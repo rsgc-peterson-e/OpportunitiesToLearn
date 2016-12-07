@@ -6,9 +6,9 @@
  You create routines in code by building functions like this:
  */
 func doTheDisco() {
-    leftArmUp()
+    rightArmUp()
     shakeItRight()
-    leftArmDown()
+    rightArmDown()
     shakeItCenter()
 }
 /*:

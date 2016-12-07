@@ -18,6 +18,14 @@
 */
 startBot()
 startRecording()
+fabulize()
+shakeItLeft()
+shakeItRight()
+shakeItCenter()
+rightArmUp()
+rightLegUp()
+rightArmDown()
+rightLegDown()
 
 
 
