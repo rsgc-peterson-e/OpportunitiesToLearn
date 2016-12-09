@@ -14,7 +14,8 @@
 */
 let example = "It was the best of times"
 // Practice here by typing . after "example":
-example
+example.isEmpty
+
 
 
 

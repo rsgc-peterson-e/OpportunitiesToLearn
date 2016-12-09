@@ -7,7 +7,9 @@
  Create three constants for items of different weights that you'd like to bring up to your fort: one less than 100, one between 100 and 1000, and one over 1000.
  */
 
-
+let food = 500
+let computers = 50
+let kitchenStuff = 1000
 
 /*:
  - callout(Exercise):
@@ -16,8 +18,8 @@
  */
 
 let ricketyRope = TreehousePulley(weightCapacity: 200)
-
-
+let rope = TreehousePulley(weightCapacity: ricketyRope.weightCapacity * 10)
+ricketyRope
 
 /*:
  - callout(Exercise):

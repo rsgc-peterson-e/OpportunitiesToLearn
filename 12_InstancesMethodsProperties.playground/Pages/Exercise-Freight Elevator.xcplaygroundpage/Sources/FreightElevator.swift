@@ -12,9 +12,9 @@ public struct TreehousePulley: CustomStringConvertible {
 
     public func canHandleAdditionalLoad(_ load: Int) -> Bool {
         if currentWeight + load > weightCapacity {
-            return true
-        } else {
             return false
+        } else {
+            return true
         }
     }
 
