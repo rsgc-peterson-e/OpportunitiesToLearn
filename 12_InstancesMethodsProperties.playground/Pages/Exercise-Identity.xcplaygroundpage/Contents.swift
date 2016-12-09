@@ -27,17 +27,20 @@ var friendPlans = myPlans
 Call the `addDance` function on `myPlans`, and assign the result to `friendPlans`.
  */
 // Define and call your function here:
-
-
-
-
+func addDance(input : String) -> String {
+    return input + " but no dancing"
+}
 /*:
  - callout(Exercise):
  How do you expect `friendPlans` to change? How do you expect `myPlans` to change?\
  Print both instances to to find out.
  */
 // Check your guess by printing here:
-
+// The variable itself should not change but the string printed after a call to the function will have " but no dancing appended to it"
+addDance(input: friendPlans)
+addDance(input: myPlans)
+myPlans
+friendPlans
 
 
 
