@@ -19,7 +19,7 @@ let kitchenStuff = 1000
 
 let ricketyRope = TreehousePulley(weightCapacity: 200)
 let rope = TreehousePulley(weightCapacity: ricketyRope.weightCapacity * 10)
-ricketyRope
+ricketyRope.canHandleAdditionalLoad(200)
 
 /*:
  - callout(Exercise):
