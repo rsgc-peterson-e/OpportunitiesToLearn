@@ -2,6 +2,9 @@
 <Workspace
    version = "1.0">
    <FileRef
+      location = "group:../Run-Length Encoding.playground">
+   </FileRef>
+   <FileRef
       location = "group:12_InstancesMethodsProperties.playground">
    </FileRef>
    <FileRef
