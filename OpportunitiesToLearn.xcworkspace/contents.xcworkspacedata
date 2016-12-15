@@ -2,6 +2,9 @@
 <Workspace
    version = "1.0">
    <FileRef
+      location = "group:SpriteKitAssignment.playground">
+   </FileRef>
+   <FileRef
       location = "group:../../../Downloads/Nyan Cat.playground">
    </FileRef>
    <FileRef
