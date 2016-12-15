@@ -2,6 +2,15 @@
 <Workspace
    version = "1.0">
    <FileRef
+      location = "group:../../../Downloads/Nyan Cat.playground">
+   </FileRef>
+   <FileRef
+      location = "group:../../../Downloads/15_Structures.playground">
+   </FileRef>
+   <FileRef
+      location = "group:../../../Downloads/19_EnumsAndSwitch.playground">
+   </FileRef>
+   <FileRef
       location = "group:../Run-Length Encoding.playground">
    </FileRef>
    <FileRef
