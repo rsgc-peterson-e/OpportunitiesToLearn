@@ -19,16 +19,16 @@ class Scene: SKScene {
         title.setScale(0.43)
         title.position = midPoint!
         scene?.addChild(title) // display star wars title text
-        let titleScaleDown = SKAction.scale(to: 0, duration: 3.5)
+        let titleScaleDown = SKAction.scale(to: 0, duration: 14)
         title.run(titleScaleDown) // run the SKAction animation
     }
     
     func makeStars() {
-        let starEmitter = SKEmitterNode()
+        let starEmitter = SKEmitterNode() // make emitter to spawn stars in the star wars animation
         starEmitter.particleLifetime = 40
         starEmitter.particleBlendMode = SKBlendMode.alpha
         starEmitter.particleBirthRate = 3
-        starEmitter.particleSize = CGSize(width : 3, height : 3)
+        starEmitter.particleSize = CGSize(width : 2.5, height : 2.5)
         starEmitter.particleColor = SKColor(red : 100, green : 100, blue : 255, alpha : 1)
         starEmitter.position = midPoint! // make star particles spawn from center of screen behind star wars logo
         starEmitter.particleSpeed = 16
@@ -42,10 +42,12 @@ class Scene: SKScene {
     }
     
     func playMusic() {
-        
+        let playSound = SKAction.playSoundFileNamed("intro.mp3", waitForCompletion: false) // make SKAction that plays the star wars intro music
+        scene?.run(playSound) // run the SKAction playing the sound
     }
     
     override func didMove(to view: SKView) {
+        playMusic()
         midPoint = CGPoint(x: frame.size.width / 2.0, y: frame.size.height / 2.0)
         showTitle()
         makeStars()
