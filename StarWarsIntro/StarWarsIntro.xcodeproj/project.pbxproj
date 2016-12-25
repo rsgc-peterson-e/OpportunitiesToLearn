@@ -14,6 +14,7 @@
 		3F1AE9041E08687B008CEAF9 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3F1AE9021E08687B008CEAF9 /* Main.storyboard */; };
 		3F1AE90D1E086A2A008CEAF9 /* Starwars-logo.png in Resources */ = {isa = PBXBuildFile; fileRef = 3F1AE90C1E086A2A008CEAF9 /* Starwars-logo.png */; };
 		3F977C311E0AC19B00AF2CC0 /* intro.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 3F977C301E0AC19B00AF2CC0 /* intro.mp3 */; };
+		734E2E541E109176006B8874 /* Explosion.sks in Resources */ = {isa = PBXBuildFile; fileRef = 734E2E531E109176006B8874 /* Explosion.sks */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -26,6 +27,7 @@
 		3F1AE9051E08687B008CEAF9 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		3F1AE90C1E086A2A008CEAF9 /* Starwars-logo.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Starwars-logo.png"; sourceTree = "<group>"; };
 		3F977C301E0AC19B00AF2CC0 /* intro.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = intro.mp3; sourceTree = "<group>"; };
+		734E2E531E109176006B8874 /* Explosion.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = Explosion.sks; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -62,6 +64,7 @@
 				3F1AE90C1E086A2A008CEAF9 /* Starwars-logo.png */,
 				3F1AE8F61E08687B008CEAF9 /* AppDelegate.swift */,
 				3F1AE8FC1E08687B008CEAF9 /* GameScene.swift */,
+				734E2E531E109176006B8874 /* Explosion.sks */,
 				3F1AE8FE1E08687B008CEAF9 /* ViewController.swift */,
 				3F1AE9001E08687B008CEAF9 /* Assets.xcassets */,
 				3F1AE9021E08687B008CEAF9 /* Main.storyboard */,
@@ -131,6 +134,7 @@
 			files = (
 				3F1AE90D1E086A2A008CEAF9 /* Starwars-logo.png in Resources */,
 				3F1AE9011E08687B008CEAF9 /* Assets.xcassets in Resources */,
+				734E2E541E109176006B8874 /* Explosion.sks in Resources */,
 				3F1AE9041E08687B008CEAF9 /* Main.storyboard in Resources */,
 				3F977C311E0AC19B00AF2CC0 /* intro.mp3 in Resources */,
 			);

@@ -37,7 +37,7 @@ class Scene: SKScene {
         starEmitter.emissionAngle = 3.14
         starEmitter.advanceSimulationTime(40)
         starEmitter.particleAlpha = 0.5
-        starEmitter.particleAlphaRange = 0.5
+        starEmitter.particleAlphaRange = 0
         scene?.addChild(starEmitter) // display the particles by adding emitter object to scene
     }
     
