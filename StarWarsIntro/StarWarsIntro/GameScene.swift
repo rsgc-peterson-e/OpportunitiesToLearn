@@ -58,9 +58,19 @@ class Scene: SKScene {
         
     }
     
+    func fireDeathStar() {
+        
+    }
+    
+    func destroyPlanet() {
+        let explosion = SKEmitterNode(fileNamed : "Explosion")
+        explosion?.position = CGPoint(x : (frame.size.width / 2.0) - 100, y : frame.size.height / 2.0)
+        scene?.addChild(explosion!)
+    }
+    
     override func didMove(to view: SKView) {
         playMusic()
-        midPoint = CGPoint(x: frame.size.width / 2.0, y: frame.size.height / 2.0)
+        midPoint = CGPoint(x : frame.size.width / 2.0, y : frame.size.height / 2.0)
         showTitle()
         makeStars()
     }
