@@ -47,7 +47,7 @@ class Scene: SKScene {
     }
     
     func scrollText() { // will recreate opening crawl of star wars a new hope
-        let text = SKLabelNode(fontNamed : "Georgia")
+        let text = SKLabelNode(fontNamed : "Star Jedi")
         let scroll = SKAction.moveBy(x: 0, y: frame.size.height, duration: 10)
         text.position = midPoint!
         text.text = "Scroll Test"
