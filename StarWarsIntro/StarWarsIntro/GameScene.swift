@@ -47,7 +47,11 @@ class Scene: SKScene {
     }
     
     func scrollText() { // will recreate opening crawl of star wars a new hope
-        
+        let text = SKLabelNode(text : "Episode IV: A New Hope")
+        let scroll = SKAction.moveBy(x: 0, y: frame.size.height, duration: 10)
+        text.position = midPoint!
+        scene?.addChild(text)
+        text.run(scroll)
     }
     
     func showPlanet() { // will show Alderaan before being destroyed by the death star
