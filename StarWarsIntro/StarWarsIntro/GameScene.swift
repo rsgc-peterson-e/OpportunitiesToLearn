@@ -47,9 +47,10 @@ class Scene: SKScene {
     }
     
     func scrollText() { // will recreate opening crawl of star wars a new hope
-        let text = SKLabelNode(text : "Episode IV: A New Hope")
+        let text = SKLabelNode(fontNamed : "Starjedi.ttf")
         let scroll = SKAction.moveBy(x: 0, y: frame.size.height, duration: 10)
         text.position = midPoint!
+        text.fontColor = NSColor.white
         scene?.addChild(text)
         text.run(scroll)
     }
@@ -77,5 +78,6 @@ class Scene: SKScene {
         midPoint = CGPoint(x : frame.size.width / 2.0, y : frame.size.height / 2.0)
         showTitle()
         makeStars()
+        scrollText()
     }
 }
