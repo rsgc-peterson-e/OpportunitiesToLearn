@@ -46,6 +46,18 @@ class Scene: SKScene {
         scene?.run(playSound) // run the SKAction playing the sound
     }
     
+    func scrollText() { // will recreate opening crawl of star wars a new hope
+        
+    }
+    
+    func showPlanet() { // will show Alderaan before being destroyed by the death star
+        
+    }
+    
+    func showDeathStar() {
+        
+    }
+    
     override func didMove(to view: SKView) {
         playMusic()
         midPoint = CGPoint(x: frame.size.width / 2.0, y: frame.size.height / 2.0)
