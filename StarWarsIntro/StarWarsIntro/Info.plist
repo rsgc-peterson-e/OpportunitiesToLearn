@@ -6,6 +6,7 @@
 	<array>
 		<string>Starjedi.ttf</string>
 		<string>SWCrawlTitle.ttf</string>
+		<string>SWCrawlBody.ttf</string>
 	</array>
 	<key>CFBundleDevelopmentRegion</key>
 	<string>en</string>

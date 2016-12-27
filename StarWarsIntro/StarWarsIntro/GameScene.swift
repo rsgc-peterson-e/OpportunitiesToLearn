@@ -3,7 +3,7 @@
 //  StarWarsIntro
 //
 //  Created by Dat Boi on 2016-12-19.
-//  Copyright © 2016 RSGC. All rights reserved.
+//  Copyright © 2016 Ethan Peterson. All rights reserved.
 //
 
 import SpriteKit
@@ -13,6 +13,13 @@ class Scene: SKScene {
     
     var midPoint : CGPoint? // useful CGPoint object allowing me to just type midpoint instead of the x and y coordinates for the center of the screen.
     
+    func aLongTimeAgo() { // will show the famous blue text A long time ago, in a galaxy...
+        var opening = [SKLabelNode]()
+        for _ in 1...2 {
+            opening.append(SKLabelNode(fontNamed : "SW Crawl Body"))
+        }
+    }
+    
     func showTitle() {
         backgroundColor = SKColor.black
         let title = SKSpriteNode(imageNamed: "Starwars-logo.png")
@@ -21,6 +28,7 @@ class Scene: SKScene {
         scene?.addChild(title) // display star wars title text
         let titleScaleDown = SKAction.scale(to: 0, duration: 14)
         title.run(titleScaleDown) // run the SKAction animation
+        // wait until titleScaleDown is complete to start the scrolling text
     }
     
     func makeStars() {
@@ -47,14 +55,16 @@ class Scene: SKScene {
     }
     
     func scrollText() { // will recreate opening crawl of star wars a new hope
+        let wait = SKAction.wait(forDuration: 14) // time in seconds the text will wait before scrolling
         let text = SKLabelNode(fontNamed : "SW Crawl Title")
-        let scroll = SKAction.moveBy(x: 0, y: frame.size.height, duration: 10)
-        text.position = midPoint!
+        let scroll = SKAction.moveBy(x: 0, y: frame.size.height + 50.0, duration: 10)
+        text.position = CGPoint(x: frame.size.width / 2.0, y: -50.0)
         text.text = "A New Hope"
         text.fontColor = SKColor(red : 252/255, green : 223/255, blue : 43/255, alpha : 1)
-        text.fontSize = 40
+        text.fontSize = 65
         scene?.addChild(text)
-        text.run(scroll)
+        let waitForTitleScaleDown = SKAction.sequence([wait, scroll]) // wait for the star wars title to zoom out and dissappear fully then scroll the text
+        text.run(waitForTitleScaleDown)
     }
     
     func showPlanet() { // will show Alderaan before being destroyed by the death star
@@ -76,10 +86,11 @@ class Scene: SKScene {
     }
     
     override func didMove(to view: SKView) {
-        playMusic()
         midPoint = CGPoint(x : frame.size.width / 2.0, y : frame.size.height / 2.0)
-        showTitle()
+        aLongTimeAgo()
         makeStars()
+//        playMusic()
+        showTitle()
         scrollText()
     }
 }
