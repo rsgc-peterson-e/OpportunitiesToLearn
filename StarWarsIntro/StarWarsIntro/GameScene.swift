@@ -13,8 +13,6 @@ class Scene: SKScene {
 
     var midPoint : CGPoint? // useful CGPoint object allowing me to just type midpoint instead of the x and y coordinates for the center of the screen.
     
-    var startingPoint : CGPoint? // starting  point for scrolling text paragraphs.
-    
     func aLongTimeAgo() { // will show the famous blue text A long time ago, in a galaxy...
         var opening = [SKLabelNode]()
         for _ in 1...2 {
@@ -90,55 +88,49 @@ class Scene: SKScene {
         episodeName.run(SKAction.sequence([episodeNameWait, episodeNameScroll]))
         
         // create paragraphs of the scrolling text intro and related variables:
+
         
-        var paragraphs = [[SKLabelNode]]()
         
         // create closure to add the correct properties to SKLabelNodes that will be present in the lines array:
         let SWLabel : () -> (SKLabelNode) = { // closure takes no parameters and returns an SKLabelNode with the proper font, color, font size etc.
             let label = SKLabelNode(fontNamed : "SW Crawl Body")
             label.fontColor = textColor
             label.fontSize = 25
-            label.position = self.startingPoint!
+            label.text = nil
             self.addChild(label)
             return label
         }
         
-        var lines = [SKLabelNode](repeating : SWLabel(), count : 7)
+        //var paragraphs = [SKLabelNode](repeating : SWLabel(), count : 7)
+        var paragraphs = [[SKLabelNode]](repeating : [SKLabelNode](repeating : SWLabel(), count : 7), count : 3)
         
         // enter the strings for the individual lines of the first paragraph:
-        lines[0].text = "It is a period of civil war."
-        lines[1].text = "Rebel spaceships, striking"
-        lines[2].text = "from a hidden base, have won"
-        lines[3].text = "their first victory against"
-        lines[4].text = "the evil Galactic Empire."
-        paragraphs.append(lines)
+        paragraphs[0][0].text = "It is a period of civil war."
+        paragraphs[0][1].text = "Rebel spaceships, striking"
+        paragraphs[0][2].text = "from a hidden base, have won"
+        paragraphs[0][3].text = "their first victory against"
+        paragraphs[0][4].text = "the evil Galactic Empire."
         
         // enter the strings for the second paragraph by reassigning the existing indices of the lines array:
         
-        lines[0].text = "During the battle,  Rebel" // NOTE: the double spacing between letters is in the same places as it was on the original New Hope title sequence
-        lines[1].text = "spies managed to steal secret"
-        lines[2].text = "plans  to  the  Empire's"
-        lines[3].text = "ultimate weapon, the DEATH"
-        lines[4].text = "STAR,  an armoured space"
-        lines[5].text = "station with enough power to"
-        lines[6].text = "destroy an entire planet."
-        paragraphs.append(lines)
+        paragraphs[1][0].text = "During the battle,  Rebel" // NOTE: the double spacing between letters is in the same places as it was on the original New Hope title sequence
+        paragraphs[1][1].text = "spies managed to steal secret"
+        paragraphs[1][2].text = "plans  to  the  Empire's"
+        paragraphs[1][3].text = "ultimate weapon, the DEATH"
+        paragraphs[1][4].text = "STAR,  an armoured space"
+        paragraphs[1][5].text = "station with enough power to"
+        paragraphs[1][6].text = "destroy an entire planet."
         
         // Third Paragraph:
+        paragraphs[2][0].text = "Pursued  by  the  Empire's"
+        print(paragraphs[2][0].text)
+        paragraphs[2][1].text = "sinister  agents, Princess"
+        paragraphs[2][2].text = "Leia races home aboard her"
+        paragraphs[2][3].text = "starship, custodian of the"
+        paragraphs[2][4].text = "stolen plans that can save"
+        paragraphs[2][5].text = "her  people  and  restore"
+        paragraphs[2][6].text = "freedom to the galaxy..."
         
-        lines[0].text = "Pursued  by  the  Empire's"
-        lines[1].text = "sinister  agents, Princess"
-        lines[2].text = "Leia races home aboard her"
-        lines[3].text = "starship, custodian of the"
-        lines[4].text = "stolen plans that can save"
-        lines[5].text = "her  people  and  restore"
-        lines[6].text = "freedom to the galaxy..."
-        paragraphs.append(lines)
-        for i in 0...paragraphs.count - 1 {
-            for j in 0...paragraphs[0].count - 1 {
-                
-            }
-        }
     }
     
     func showPlanet() { // will show Alderaan before being destroyed by the death star
@@ -161,7 +153,6 @@ class Scene: SKScene {
     
     override func didMove(to view: SKView) {
         midPoint = CGPoint(x : frame.size.width / 2.0, y : frame.size.height / 2.0)
-        startingPoint = CGPoint(x: frame.size.width / 2.0, y: -25.0)
         aLongTimeAgo()
         makeStars()
 //        playMusic()
