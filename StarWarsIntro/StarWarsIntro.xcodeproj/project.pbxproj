@@ -18,6 +18,7 @@
 		734E2E5B1E117AC4006B8874 /* Starjedi.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 734E2E5A1E117AC4006B8874 /* Starjedi.ttf */; };
 		734E2E5D1E1181BF006B8874 /* SWCrawlTitle.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 734E2E5C1E1181BF006B8874 /* SWCrawlTitle.ttf */; };
 		734E2E5F1E11A7E7006B8874 /* SWCrawlBody.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 734E2E5E1E11A7E7006B8874 /* SWCrawlBody.ttf */; };
+		734E2E611E120953006B8874 /* Franklin Gothic Book Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 734E2E601E120953006B8874 /* Franklin Gothic Book Regular.ttf */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -34,6 +35,7 @@
 		734E2E5A1E117AC4006B8874 /* Starjedi.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = Starjedi.ttf; sourceTree = "<group>"; };
 		734E2E5C1E1181BF006B8874 /* SWCrawlTitle.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = SWCrawlTitle.ttf; sourceTree = "<group>"; };
 		734E2E5E1E11A7E7006B8874 /* SWCrawlBody.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = SWCrawlBody.ttf; sourceTree = "<group>"; };
+		734E2E601E120953006B8874 /* Franklin Gothic Book Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Franklin Gothic Book Regular.ttf"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -68,6 +70,7 @@
 			children = (
 				3F977C301E0AC19B00AF2CC0 /* intro.mp3 */,
 				3F1AE90C1E086A2A008CEAF9 /* Starwars-logo.png */,
+				734E2E601E120953006B8874 /* Franklin Gothic Book Regular.ttf */,
 				734E2E5E1E11A7E7006B8874 /* SWCrawlBody.ttf */,
 				734E2E5C1E1181BF006B8874 /* SWCrawlTitle.ttf */,
 				734E2E5A1E117AC4006B8874 /* Starjedi.ttf */,
@@ -147,6 +150,7 @@
 				3F1AE9041E08687B008CEAF9 /* Main.storyboard in Resources */,
 				734E2E5F1E11A7E7006B8874 /* SWCrawlBody.ttf in Resources */,
 				734E2E5B1E117AC4006B8874 /* Starjedi.ttf in Resources */,
+				734E2E611E120953006B8874 /* Franklin Gothic Book Regular.ttf in Resources */,
 				3F977C311E0AC19B00AF2CC0 /* intro.mp3 in Resources */,
 				734E2E5D1E1181BF006B8874 /* SWCrawlTitle.ttf in Resources */,
 			);

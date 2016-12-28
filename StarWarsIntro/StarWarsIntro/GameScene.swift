@@ -16,8 +16,11 @@ class Scene: SKScene {
     func aLongTimeAgo() { // will show the famous blue text A long time ago, in a galaxy...
         var opening = [SKLabelNode]()
         for _ in 1...2 {
-            opening.append(SKLabelNode(fontNamed : "SW Crawl Body"))
+            opening.append(SKLabelNode(fontNamed : "Franklin Gothic Book"))
         }
+        // NOTE: add the proper color and font size / spacing
+        opening[0].text = "A long time ago, in a galaxy"
+        opening[1].text = "far, far away..."
     }
     
     func showTitle() {
@@ -55,16 +58,22 @@ class Scene: SKScene {
     }
     
     func scrollText() { // will recreate opening crawl of star wars a new hope
+        let textColor = SKColor(red : 252/255, green : 223/255, blue : 43/255, alpha : 1) // useful variable to prevent retyping the color data for the scrolling text.
         let wait = SKAction.wait(forDuration: 14) // time in seconds the text will wait before scrolling
-        let text = SKLabelNode(fontNamed : "SW Crawl Title")
+        let episodeNum = SKLabelNode(fontNamed : "Franklin Gothic Regular")
         let scroll = SKAction.moveBy(x: 0, y: frame.size.height + 50.0, duration: 10)
-        text.position = CGPoint(x: frame.size.width / 2.0, y: -50.0)
-        text.text = "A New Hope"
-        text.fontColor = SKColor(red : 252/255, green : 223/255, blue : 43/255, alpha : 1)
-        text.fontSize = 65
-        scene?.addChild(text)
+        episodeNum.position = CGPoint(x: frame.size.width / 2.0, y: -50.0)
+        episodeNum.text = "Episode IV"
+        episodeNum.fontColor = textColor
+        episodeNum.fontSize = 65
+        scene?.addChild(episodeNum)
         let waitForTitleScaleDown = SKAction.sequence([wait, scroll]) // wait for the star wars title to zoom out and dissappear fully then scroll the text
-        text.run(waitForTitleScaleDown)
+        episodeNum.run(waitForTitleScaleDown)
+        let episodeName = SKLabelNode(fontNamed: "SW Crawl Title")
+        episodeName.text = "A New Hope"
+        episodeName.position = CGPoint(x: frame.size.width / 2.0, y: -50.0)
+        episodeName.color = textColor
+        
     }
     
     func showPlanet() { // will show Alderaan before being destroyed by the death star
