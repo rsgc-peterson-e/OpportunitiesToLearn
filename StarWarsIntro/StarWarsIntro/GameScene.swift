@@ -86,8 +86,6 @@ class Scene: SKScene {
         let episodeNameScroll = SKAction.moveBy(x: 0, y: frame.size.height + 50.0, duration: scrollDur)
         let episodeNameWait = SKAction.wait(forDuration: titleScaleDownDur + 4) // extra time to wait to create spacing between the two SKlabels
         episodeName.run(SKAction.sequence([episodeNameWait, episodeNameScroll]))
-        
-        // create paragraphs of the scrolling text intro and related variables:
 
         
         
@@ -101,6 +99,7 @@ class Scene: SKScene {
             return label
         }
         
+        // create paragraphs of the scrolling text intro and related variables:
         var paragraphs = [[SKLabelNode]](repeating : [SKLabelNode](repeating : SKLabelNode(text : nil), count : 7), count : 3) // build 2d paragraphs array allowing me to access the paragraph and a individual line to be displayed on screen
         
         // enter the strings for the individual lines of the first paragraph:
@@ -109,8 +108,9 @@ class Scene: SKScene {
         paragraphs[0][2] = SWLabel("from a hidden base, have won")
         paragraphs[0][3] = SWLabel("their first victory against")
         paragraphs[0][4] = SWLabel("the evil Galactic Empire.")
-        // enter the strings for the second paragraph by reassigning the existing indices of the lines array:
         
+        
+        // enter the strings for the second paragraph by reassigning the existing indices of the lines array:
         paragraphs[1][0] = SWLabel("During the battle,  Rebel") // NOTE: the double spacing between letters is in the same places as it was on the original New Hope title sequence
         paragraphs[1][1] = SWLabel("spies managed to steal secret")
         paragraphs[1][2] = SWLabel("plans  to  the  Empire's")
@@ -118,6 +118,7 @@ class Scene: SKScene {
         paragraphs[1][4] = SWLabel("STAR,  an armoured space")
         paragraphs[1][5] = SWLabel("station with enough power to")
         paragraphs[1][6] = SWLabel("destroy an entire planet.")
+        
         
         // Third Paragraph:
         paragraphs[2][0] = SWLabel("Pursued  by  the  Empire's")
@@ -128,13 +129,17 @@ class Scene: SKScene {
         paragraphs[2][5] = SWLabel("her  people  and  restore")
         paragraphs[2][6] = SWLabel("freedom to the galaxy...")
         
-        // use loops to assign a position of each line of text:
         
+        // use loops to assign the starting position to each line of text:
         for i in 0...paragraphs.count - 1 {
             for j in 0...paragraphs[i].count - 1 {
-                paragraphs[i][j].position = CGPoint(x: frame.size.width / 2.0, y: -20.0)
+                let startingPoint = CGPoint(x: frame.size.width / 2.0, y: -20.0)
+                paragraphs[i][j].position = startingPoint
+                let wait = SKAction.wait(forDuration: TimeInterval(1 + (2 * j))) // has text wait before scrolling to simulate a line break which is unavailable in the SKLabelNode class.
+                paragraphs[i][j].run(SKAction.sequence([wait, SKAction.moveBy(x: 0, y: frame.size.height + 20.0, duration: scrollDur)]))
             }
         }
+        
     }
     
     func showPlanet() { // will show Alderaan before being destroyed by the death star
