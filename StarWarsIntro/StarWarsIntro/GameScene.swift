@@ -91,46 +91,50 @@ class Scene: SKScene {
 
         
         
-        // create closure to add the correct properties to SKLabelNodes that will be present in the lines array:
-        let SWLabel : () -> (SKLabelNode) = { // closure takes no parameters and returns an SKLabelNode with the proper font, color, font size etc.
+        // create closure to add the correct properties to SKLabelNodes that will be present in the paragraphs array:
+        let SWLabel : (String) -> (SKLabelNode) = { text in // closure takes string to be shown on label returning an SKLabelNode object with the correct font, color, size etc.
             let label = SKLabelNode(fontNamed : "SW Crawl Body")
             label.fontColor = textColor
             label.fontSize = 25
-            label.text = nil
+            label.text = text
             self.addChild(label)
             return label
         }
         
-        //var paragraphs = [SKLabelNode](repeating : SWLabel(), count : 7)
-        var paragraphs = [[SKLabelNode]](repeating : [SKLabelNode](repeating : SWLabel(), count : 7), count : 3)
+        var paragraphs = [[SKLabelNode]](repeating : [SKLabelNode](repeating : SKLabelNode(text : nil), count : 7), count : 3) // build 2d paragraphs array allowing me to access the paragraph and a individual line to be displayed on screen
         
         // enter the strings for the individual lines of the first paragraph:
-        paragraphs[0][0].text = "It is a period of civil war."
-        paragraphs[0][1].text = "Rebel spaceships, striking"
-        paragraphs[0][2].text = "from a hidden base, have won"
-        paragraphs[0][3].text = "their first victory against"
-        paragraphs[0][4].text = "the evil Galactic Empire."
-        
+        paragraphs[0][0] = SWLabel("It is a period of civil war.")
+        paragraphs[0][1] = SWLabel("Rebel spaceships, striking")
+        paragraphs[0][2] = SWLabel("from a hidden base, have won")
+        paragraphs[0][3] = SWLabel("their first victory against")
+        paragraphs[0][4] = SWLabel("the evil Galactic Empire.")
         // enter the strings for the second paragraph by reassigning the existing indices of the lines array:
         
-        paragraphs[1][0].text = "During the battle,  Rebel" // NOTE: the double spacing between letters is in the same places as it was on the original New Hope title sequence
-        paragraphs[1][1].text = "spies managed to steal secret"
-        paragraphs[1][2].text = "plans  to  the  Empire's"
-        paragraphs[1][3].text = "ultimate weapon, the DEATH"
-        paragraphs[1][4].text = "STAR,  an armoured space"
-        paragraphs[1][5].text = "station with enough power to"
-        paragraphs[1][6].text = "destroy an entire planet."
+        paragraphs[1][0] = SWLabel("During the battle,  Rebel") // NOTE: the double spacing between letters is in the same places as it was on the original New Hope title sequence
+        paragraphs[1][1] = SWLabel("spies managed to steal secret")
+        paragraphs[1][2] = SWLabel("plans  to  the  Empire's")
+        paragraphs[1][3] = SWLabel("ultimate weapon, the DEATH")
+        paragraphs[1][4] = SWLabel("STAR,  an armoured space")
+        paragraphs[1][5] = SWLabel("station with enough power to")
+        paragraphs[1][6] = SWLabel("destroy an entire planet.")
         
         // Third Paragraph:
-        paragraphs[2][0].text = "Pursued  by  the  Empire's"
-        print(paragraphs[2][0].text)
-        paragraphs[2][1].text = "sinister  agents, Princess"
-        paragraphs[2][2].text = "Leia races home aboard her"
-        paragraphs[2][3].text = "starship, custodian of the"
-        paragraphs[2][4].text = "stolen plans that can save"
-        paragraphs[2][5].text = "her  people  and  restore"
-        paragraphs[2][6].text = "freedom to the galaxy..."
+        paragraphs[2][0] = SWLabel("Pursued  by  the  Empire's")
+        paragraphs[2][1] = SWLabel("sinister  agents, Princess")
+        paragraphs[2][2] = SWLabel("Leia races home aboard her")
+        paragraphs[2][3] = SWLabel("starship, custodian of the")
+        paragraphs[2][4] = SWLabel("stolen plans that can save")
+        paragraphs[2][5] = SWLabel("her  people  and  restore")
+        paragraphs[2][6] = SWLabel("freedom to the galaxy...")
         
+        // use loops to assign a position of each line of text:
+        
+        for i in 0...paragraphs.count - 1 {
+            for j in 0...paragraphs[i].count - 1 {
+                paragraphs[i][j].position = CGPoint(x: frame.size.width / 2.0, y: -20.0)
+            }
+        }
     }
     
     func showPlanet() { // will show Alderaan before being destroyed by the death star
