@@ -89,7 +89,47 @@ class Scene: SKScene {
         
         // create paragraphs of the scrolling text intro and related variables:
         
+        var paragraphs = [[SKLabelNode]]()
         
+        // create closure to add the correct properties to SKLabelNodes that will be present in the lines array:
+        let SWLabel : () -> (SKLabelNode) = { // closure takes no parameters and returns an SKLabelNode with the proper font, color, font size etc.
+            let label = SKLabelNode(fontNamed : "SW Crawl Body")
+            label.fontColor = textColor
+            label.fontSize = 25
+            return label
+        }
+        
+        var lines = [SKLabelNode](repeating : SWLabel(), count : 7)
+        
+        // enter the strings for the individual lines of the first paragraph:
+        lines[0].text = "It is a period of civil war."
+        lines[1].text = "Rebel spaceships, striking"
+        lines[2].text = "from a hidden base, have won"
+        lines[3].text = "their first victory against"
+        lines[4].text = "the evil Galactic Empire."
+        paragraphs.append(lines)
+        
+        // enter the strings for the second paragraph by reassigning the existing indices of the lines array:
+        
+        lines[0].text = "During the battle,  Rebel" // NOTE: the double spacing between letters is in the same places as it was on the original New Hope title sequence
+        lines[1].text = "spies managed to steal secret"
+        lines[2].text = "plans  to  the  Empire's"
+        lines[3].text = "ultimate weapon, the DEATH"
+        lines[4].text = "STAR,  an armoured space"
+        lines[5].text = "station with enough power to"
+        lines[6].text = "destroy an entire planet."
+        paragraphs.append(lines)
+        
+        // Third Paragraph:
+        
+        lines[0].text = "Pursued  by  the  Empire's"
+        lines[1].text = "sinister  agents, Princess"
+        lines[2].text = "Leia races home aboard her"
+        lines[3].text = "starship, custodian of the"
+        lines[4].text = "stolen plans that can save"
+        lines[5].text = "her  people  and  restore"
+        lines[6].text = "freedom to the galaxy..."
+        paragraphs.append(lines)
     }
     
     func showPlanet() { // will show Alderaan before being destroyed by the death star
