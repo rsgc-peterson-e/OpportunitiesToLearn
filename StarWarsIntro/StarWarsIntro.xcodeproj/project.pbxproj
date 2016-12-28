@@ -14,10 +14,10 @@
 		3F1AE9041E08687B008CEAF9 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3F1AE9021E08687B008CEAF9 /* Main.storyboard */; };
 		3F1AE90D1E086A2A008CEAF9 /* Starwars-logo.png in Resources */ = {isa = PBXBuildFile; fileRef = 3F1AE90C1E086A2A008CEAF9 /* Starwars-logo.png */; };
 		3F977C311E0AC19B00AF2CC0 /* intro.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 3F977C301E0AC19B00AF2CC0 /* intro.mp3 */; };
+		731034FC1E143FCA00959CE3 /* SWCrawlBody.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 731034FB1E143FCA00959CE3 /* SWCrawlBody.ttf */; };
 		734E2E541E109176006B8874 /* Explosion.sks in Resources */ = {isa = PBXBuildFile; fileRef = 734E2E531E109176006B8874 /* Explosion.sks */; };
 		734E2E5B1E117AC4006B8874 /* Starjedi.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 734E2E5A1E117AC4006B8874 /* Starjedi.ttf */; };
 		734E2E5D1E1181BF006B8874 /* SWCrawlTitle.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 734E2E5C1E1181BF006B8874 /* SWCrawlTitle.ttf */; };
-		734E2E5F1E11A7E7006B8874 /* SWCrawlBody.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 734E2E5E1E11A7E7006B8874 /* SWCrawlBody.ttf */; };
 		734E2E611E120953006B8874 /* Franklin Gothic Book Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 734E2E601E120953006B8874 /* Franklin Gothic Book Regular.ttf */; };
 /* End PBXBuildFile section */
 
@@ -31,10 +31,10 @@
 		3F1AE9051E08687B008CEAF9 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		3F1AE90C1E086A2A008CEAF9 /* Starwars-logo.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Starwars-logo.png"; sourceTree = "<group>"; };
 		3F977C301E0AC19B00AF2CC0 /* intro.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = intro.mp3; sourceTree = "<group>"; };
+		731034FB1E143FCA00959CE3 /* SWCrawlBody.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = SWCrawlBody.ttf; sourceTree = "<group>"; };
 		734E2E531E109176006B8874 /* Explosion.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = Explosion.sks; sourceTree = "<group>"; };
 		734E2E5A1E117AC4006B8874 /* Starjedi.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = Starjedi.ttf; sourceTree = "<group>"; };
 		734E2E5C1E1181BF006B8874 /* SWCrawlTitle.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = SWCrawlTitle.ttf; sourceTree = "<group>"; };
-		734E2E5E1E11A7E7006B8874 /* SWCrawlBody.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = SWCrawlBody.ttf; sourceTree = "<group>"; };
 		734E2E601E120953006B8874 /* Franklin Gothic Book Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Franklin Gothic Book Regular.ttf"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -70,8 +70,8 @@
 			children = (
 				3F977C301E0AC19B00AF2CC0 /* intro.mp3 */,
 				3F1AE90C1E086A2A008CEAF9 /* Starwars-logo.png */,
+				731034FB1E143FCA00959CE3 /* SWCrawlBody.ttf */,
 				734E2E601E120953006B8874 /* Franklin Gothic Book Regular.ttf */,
-				734E2E5E1E11A7E7006B8874 /* SWCrawlBody.ttf */,
 				734E2E5C1E1181BF006B8874 /* SWCrawlTitle.ttf */,
 				734E2E5A1E117AC4006B8874 /* Starjedi.ttf */,
 				3F1AE8F61E08687B008CEAF9 /* AppDelegate.swift */,
@@ -148,11 +148,11 @@
 				3F1AE9011E08687B008CEAF9 /* Assets.xcassets in Resources */,
 				734E2E541E109176006B8874 /* Explosion.sks in Resources */,
 				3F1AE9041E08687B008CEAF9 /* Main.storyboard in Resources */,
-				734E2E5F1E11A7E7006B8874 /* SWCrawlBody.ttf in Resources */,
 				734E2E5B1E117AC4006B8874 /* Starjedi.ttf in Resources */,
 				734E2E611E120953006B8874 /* Franklin Gothic Book Regular.ttf in Resources */,
 				3F977C311E0AC19B00AF2CC0 /* intro.mp3 in Resources */,
 				734E2E5D1E1181BF006B8874 /* SWCrawlTitle.ttf in Resources */,
+				731034FC1E143FCA00959CE3 /* SWCrawlBody.ttf in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -6,8 +6,8 @@
 	<array>
 		<string>Starjedi.ttf</string>
 		<string>SWCrawlTitle.ttf</string>
-		<string>SWCrawlBody.ttf</string>
 		<string>Franklin Gothic Book Regular.ttf</string>
+		<string>SWCrawlBody.ttf</string>
 	</array>
 	<key>CFBundleDevelopmentRegion</key>
 	<string>en</string>

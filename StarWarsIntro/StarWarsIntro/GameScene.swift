@@ -10,8 +10,10 @@ import SpriteKit
 import GameplayKit
 
 class Scene: SKScene {
-    
+
     var midPoint : CGPoint? // useful CGPoint object allowing me to just type midpoint instead of the x and y coordinates for the center of the screen.
+    
+    var startingPoint : CGPoint? // starting  point for scrolling text paragraphs.
     
     func aLongTimeAgo() { // will show the famous blue text A long time ago, in a galaxy...
         var opening = [SKLabelNode]()
@@ -96,6 +98,8 @@ class Scene: SKScene {
             let label = SKLabelNode(fontNamed : "SW Crawl Body")
             label.fontColor = textColor
             label.fontSize = 25
+            label.position = self.startingPoint!
+            self.addChild(label)
             return label
         }
         
@@ -130,6 +134,11 @@ class Scene: SKScene {
         lines[5].text = "her  people  and  restore"
         lines[6].text = "freedom to the galaxy..."
         paragraphs.append(lines)
+        for i in 0...paragraphs.count - 1 {
+            for j in 0...paragraphs[0].count - 1 {
+                
+            }
+        }
     }
     
     func showPlanet() { // will show Alderaan before being destroyed by the death star
@@ -152,6 +161,7 @@ class Scene: SKScene {
     
     override func didMove(to view: SKView) {
         midPoint = CGPoint(x : frame.size.width / 2.0, y : frame.size.height / 2.0)
+        startingPoint = CGPoint(x: frame.size.width / 2.0, y: -25.0)
         aLongTimeAgo()
         makeStars()
 //        playMusic()
