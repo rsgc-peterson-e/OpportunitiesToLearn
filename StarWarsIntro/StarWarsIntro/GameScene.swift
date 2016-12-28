@@ -58,21 +58,37 @@ class Scene: SKScene {
     }
     
     func scrollText() { // will recreate opening crawl of star wars a new hope
+        let scrollDur : TimeInterval = 30
+        let titleScaleDownDur : TimeInterval = 14 // stores time interval it takes for star wars title to scale down and leave the screen
         let textColor = SKColor(red : 252/255, green : 223/255, blue : 43/255, alpha : 1) // useful variable to prevent retyping the color data for the scrolling text.
-        let wait = SKAction.wait(forDuration: 14) // time in seconds the text will wait before scrolling
-        let episodeNum = SKLabelNode(fontNamed : "Franklin Gothic Regular")
-        let scroll = SKAction.moveBy(x: 0, y: frame.size.height + 50.0, duration: 10)
-        episodeNum.position = CGPoint(x: frame.size.width / 2.0, y: -50.0)
+        
+        // create SKLabel showing the episode number to be displayed following the star wars logo leaving the screen:
+        
+        let episodeNumWait = SKAction.wait(forDuration: titleScaleDownDur) // time in seconds the text will wait before scrolling
+        let episodeNum = SKLabelNode(fontNamed : "Franklin Gothic Book")
+        let episodeNumScroll = SKAction.moveBy(x: 0, y: frame.size.height + 50.0, duration: scrollDur)
+        episodeNum.position = CGPoint(x: frame.size.width / 2.0, y: -30.0)
         episodeNum.text = "Episode IV"
         episodeNum.fontColor = textColor
-        episodeNum.fontSize = 65
+        episodeNum.fontSize = 30
         scene?.addChild(episodeNum)
-        let waitForTitleScaleDown = SKAction.sequence([wait, scroll]) // wait for the star wars title to zoom out and dissappear fully then scroll the text
+        let waitForTitleScaleDown = SKAction.sequence([episodeNumWait, episodeNumScroll]) // wait for the star wars title to zoom out and dissappear fully then scroll the text
         episodeNum.run(waitForTitleScaleDown)
+        
+        // create and display SKLabel for the episode title:
+        
         let episodeName = SKLabelNode(fontNamed: "SW Crawl Title")
         episodeName.text = "A New Hope"
         episodeName.position = CGPoint(x: frame.size.width / 2.0, y: -50.0)
-        episodeName.color = textColor
+        episodeName.fontColor = textColor
+        episodeName.fontSize = 65
+        scene?.addChild(episodeName)
+        let episodeNameScroll = SKAction.moveBy(x: 0, y: frame.size.height + 50.0, duration: scrollDur)
+        let episodeNameWait = SKAction.wait(forDuration: titleScaleDownDur + 4) // extra time to wait to create spacing between the two SKlabels
+        episodeName.run(SKAction.sequence([episodeNameWait, episodeNameScroll]))
+        
+        // create paragraphs of the scrolling text intro and related variables:
+        
         
     }
     
