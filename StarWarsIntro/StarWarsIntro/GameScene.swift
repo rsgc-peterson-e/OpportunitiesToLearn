@@ -133,18 +133,9 @@ class Scene: SKScene {
         
         
         // use loops to assign the starting position and begin scrolling each line of text on timed intervals:
-        let lineScroll = SKAction.moveBy(x: 0, y: frame.size.height + 22.5, duration: scrollDur)
+        let lineScroll = SKAction.moveBy(x: 0, y: frame.size.height + 24, duration: scrollDur)
         let initalWait = SKAction.wait(forDuration: titleScaleDownDur + 8)
         var lineWait = SKAction.wait(forDuration: 1.25)
-        
-//        for i in 0...paragraphs.count - 1 {
-//            let paragraphWait = SKAction.wait(forDuration: TimeInterval(3 * i))
-//            for j in 0...paragraphs[i].count - 1 {
-//                let lineWait = SKAction.wait(forDuration: TimeInterval(Double(j) * 1.25))
-//                paragraphs[i][j].run(SKAction.sequence([initalWait, paragraphWait, lineWait, lineScroll]))
-//            }
-//        }
-        let paragraphWait = SKAction.wait(forDuration: 3)
         
         // scroll first paragraph
         for i in 0...paragraphs[0].count - 1 {
@@ -156,10 +147,18 @@ class Scene: SKScene {
             }
         }
         
+        // scroll second paragraph
         let p1Wait = SKAction.wait(forDuration: TimeInterval(Double(paragraphs[0].count - 3) * 1.25))
         for j in 0...paragraphs[1].count - 1 {
             let wait = SKAction.wait(forDuration: TimeInterval(Double(j) * 1.25))
             paragraphs[1][j].run(SKAction.sequence([initalWait, p1Wait, wait, lineWait, lineScroll]))
+        }
+        
+        // scroll third paragraph
+        let p2Wait = SKAction.wait(forDuration: p1Wait.duration + TimeInterval(Double(paragraphs[1].count + 1) * 1.25))
+        for k in 0...paragraphs[2].count - 1 {
+            let wait = SKAction.wait(forDuration: TimeInterval(Double(k) * 1.25))
+            paragraphs[2][k].run(SKAction.sequence([initalWait, p2Wait, wait, lineWait, lineScroll]))
         }
     }
     
@@ -185,7 +184,7 @@ class Scene: SKScene {
         midPoint = CGPoint(x : frame.size.width / 2.0, y : frame.size.height / 2.0)
         aLongTimeAgo()
         makeStars()
-//        playMusic()
+        playMusic()
         showTitle()
         scrollText()
     }
