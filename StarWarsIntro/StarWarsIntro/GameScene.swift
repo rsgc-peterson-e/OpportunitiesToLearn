@@ -156,11 +156,11 @@ class Scene: SKScene {
             }
         }
         
-//        for j in 0...paragraphs[1].count - 1 {
-//            //lineWait.duration = lineWait.duration + TimeInterval(Double(j) * 1.25)
-//            lineWait.duration = TimeInterval(1.25 + Double(j) * 1.25)
-//            paragraphs[1][j].run(SKAction.sequence([initalWait, lineWait, paragraphWait, lineScroll]))
-//        }
+        let p1Wait = SKAction.wait(forDuration: TimeInterval(Double(paragraphs[0].count) * 1.25))
+        for j in 0...paragraphs[1].count - 1 {
+            let wait = SKAction.wait(forDuration: TimeInterval(Double(j) * 1.25))
+            paragraphs[1][j].run(SKAction.sequence([initalWait, p1Wait, wait, lineWait, lineScroll]))
+        }
     }
     
     func showPlanet() { // will show Alderaan before being destroyed by the death star
