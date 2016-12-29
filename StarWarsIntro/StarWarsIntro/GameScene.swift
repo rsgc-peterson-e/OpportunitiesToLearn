@@ -135,15 +135,32 @@ class Scene: SKScene {
         // use loops to assign the starting position and begin scrolling each line of text on timed intervals:
         let lineScroll = SKAction.moveBy(x: 0, y: frame.size.height + 22.5, duration: scrollDur)
         let initalWait = SKAction.wait(forDuration: titleScaleDownDur + 8)
-        let lineWait = SKAction.wait(forDuration: 1.25)
+        var lineWait = SKAction.wait(forDuration: 1.25)
         
-        for i in 0...paragraphs.count - 1 {
-            let paragraphWait = SKAction.wait(forDuration: TimeInterval(3 * i))
-            for j in 0...paragraphs[i].count - 1 {
-                let lineWait = SKAction.wait(forDuration: TimeInterval(Double(j) * 1.25))
-                paragraphs[i][j].run(SKAction.sequence([initalWait, paragraphWait, lineWait, lineScroll]))
+//        for i in 0...paragraphs.count - 1 {
+//            let paragraphWait = SKAction.wait(forDuration: TimeInterval(3 * i))
+//            for j in 0...paragraphs[i].count - 1 {
+//                let lineWait = SKAction.wait(forDuration: TimeInterval(Double(j) * 1.25))
+//                paragraphs[i][j].run(SKAction.sequence([initalWait, paragraphWait, lineWait, lineScroll]))
+//            }
+//        }
+        let paragraphWait = SKAction.wait(forDuration: 3)
+        
+        // scroll first paragraph
+        for i in 0...paragraphs[0].count - 1 {
+            lineWait = SKAction.wait(forDuration: TimeInterval(Double(i) * 1.25))
+            if (i == 0) {
+                paragraphs[0][i].run(SKAction.sequence([initalWait, lineScroll]))
+            } else {
+                paragraphs[0][i].run(SKAction.sequence([initalWait, lineWait, lineScroll]))
             }
         }
+        
+//        for j in 0...paragraphs[1].count - 1 {
+//            //lineWait.duration = lineWait.duration + TimeInterval(Double(j) * 1.25)
+//            lineWait.duration = TimeInterval(1.25 + Double(j) * 1.25)
+//            paragraphs[1][j].run(SKAction.sequence([initalWait, lineWait, paragraphWait, lineScroll]))
+//        }
     }
     
     func showPlanet() { // will show Alderaan before being destroyed by the death star
