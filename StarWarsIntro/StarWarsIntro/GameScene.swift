@@ -156,7 +156,7 @@ class Scene: SKScene {
             }
         }
         
-        let p1Wait = SKAction.wait(forDuration: TimeInterval(Double(paragraphs[0].count) * 1.25))
+        let p1Wait = SKAction.wait(forDuration: TimeInterval(Double(paragraphs[0].count - 3) * 1.25))
         for j in 0...paragraphs[1].count - 1 {
             let wait = SKAction.wait(forDuration: TimeInterval(Double(j) * 1.25))
             paragraphs[1][j].run(SKAction.sequence([initalWait, p1Wait, wait, lineWait, lineScroll]))
