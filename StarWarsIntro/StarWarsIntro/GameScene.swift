@@ -87,14 +87,14 @@ class Scene: SKScene {
         let episodeNameWait = SKAction.wait(forDuration: titleScaleDownDur + 4) // extra time to wait to create spacing between the two SKlabels
         episodeName.run(SKAction.sequence([episodeNameWait, episodeNameScroll]))
 
-        
-        
+        let startingPoint = CGPoint(x: frame.size.width / 2.0, y: -20.0)
         // create closure to add the correct properties to SKLabelNodes that will be present in the paragraphs array:
         let SWLabel : (String) -> (SKLabelNode) = { text in // closure takes string to be shown on label returning an SKLabelNode object with the correct font, color, size etc.
             let label = SKLabelNode(fontNamed : "SW Crawl Body")
             label.fontColor = textColor
             label.fontSize = 25
             label.text = text
+            label.position = startingPoint
             self.addChild(label)
             return label
         }
@@ -108,6 +108,8 @@ class Scene: SKScene {
         paragraphs[0][2] = SWLabel("from a hidden base, have won")
         paragraphs[0][3] = SWLabel("their first victory against")
         paragraphs[0][4] = SWLabel("the evil Galactic Empire.")
+        paragraphs[0].remove(at: 5)
+        paragraphs[0].remove(at: 5)
         
         
         // enter the strings for the second paragraph by reassigning the existing indices of the lines array:
@@ -130,16 +132,18 @@ class Scene: SKScene {
         paragraphs[2][6] = SWLabel("freedom to the galaxy...")
         
         
-        // use loops to assign the starting position to each line of text:
+        // use loops to assign the starting position and begin scrolling each line of text on timed intervals:
+        let lineScroll = SKAction.moveBy(x: 0, y: frame.size.height + 22.5, duration: scrollDur)
+        let initalWait = SKAction.wait(forDuration: titleScaleDownDur + 8)
+        let lineWait = SKAction.wait(forDuration: 1.25)
+        
         for i in 0...paragraphs.count - 1 {
+            let paragraphWait = SKAction.wait(forDuration: TimeInterval(3 * i))
             for j in 0...paragraphs[i].count - 1 {
-                let startingPoint = CGPoint(x: frame.size.width / 2.0, y: -20.0)
-                paragraphs[i][j].position = startingPoint
-                let wait = SKAction.wait(forDuration: TimeInterval(1 + (2 * j))) // has text wait before scrolling to simulate a line break which is unavailable in the SKLabelNode class.
-                paragraphs[i][j].run(SKAction.sequence([wait, SKAction.moveBy(x: 0, y: frame.size.height + 20.0, duration: scrollDur)]))
+                let lineWait = SKAction.wait(forDuration: TimeInterval(Double(j) * 1.25))
+                paragraphs[i][j].run(SKAction.sequence([initalWait, paragraphWait, lineWait, lineScroll]))
             }
         }
-        
     }
     
     func showPlanet() { // will show Alderaan before being destroyed by the death star
