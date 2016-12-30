@@ -13,6 +13,9 @@ class Scene: SKScene {
 
     var midPoint : CGPoint? // useful CGPoint object allowing me to just type midpoint instead of the x and y coordinates for the center of the screen.
     
+    // Global variables to be used for camera panning
+    var
+    
     func aLongTimeAgo() { // will show the famous blue text A long time ago, in a galaxy...
         var opening = [SKLabelNode]()
         for _ in 1...2 {
@@ -163,10 +166,10 @@ class Scene: SKScene {
     }
     
     func showPlanet() { // will show Alderaan before being destroyed by the death star
-        
+        let planet = SKSpriteNode(fileNamed : "Alderaan.PNG") // initialize planet img
     }
     
-    func showDeathStar() {
+    func showDeathStar() { // will show death star before firing onscreen
         
     }
     
@@ -184,8 +187,15 @@ class Scene: SKScene {
         midPoint = CGPoint(x : frame.size.width / 2.0, y : frame.size.height / 2.0)
         aLongTimeAgo()
         makeStars()
-        playMusic()
+//        playMusic()
         showTitle()
         scrollText()
+        showPlanet()
+        showDeathStar()
+        fireDeathStar()
+    }
+    
+    override func update(_ currentTime : TimeInterval) {
+        
     }
 }
