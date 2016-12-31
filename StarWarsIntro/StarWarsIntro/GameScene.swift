@@ -13,8 +13,20 @@ class Scene: SKScene {
 
     var midPoint : CGPoint? // useful CGPoint object allowing me to just type midpoint instead of the x and y coordinates for the center of the screen.
     
-    // Global variables to be used for camera panning
-    //var
+    // create functions to initialize and control camera node:
+    
+    override var camera: SKCameraNode?
+    
+    func setupCam() {
+        camera = SKCameraNode()
+        self.addChild(camera)
+    }
+    
+    func controlCam(pos : CGPoint) {
+        camera?.position = pos
+    }
+    
+    // Main Animation Functions:
     
     func aLongTimeAgo() { // will show the famous blue text A long time ago, in a galaxy...
         var opening = [SKLabelNode]()
@@ -167,10 +179,6 @@ class Scene: SKScene {
     
     func showPlanet() { // will show Alderaan before being destroyed by the death star
         let planet = SKSpriteNode(fileNamed : "Alderaan.PNG") // initialize planet img
-        var moveCam = SKAction.run {
-            // place code to be run when this SKAction is run
-            // allowing the camera to be moved at the right time, which was previously thought of as a much larger challenge.
-        }
     }
     
     func showDeathStar() { // will show death star before firing onscreen
@@ -187,11 +195,13 @@ class Scene: SKScene {
         scene?.addChild(explosion!)
     }
     
+    // Overrided SpriteKit Functions:
+    
     override func didMove(to view: SKView) {
         midPoint = CGPoint(x : frame.size.width / 2.0, y : frame.size.height / 2.0)
         aLongTimeAgo()
         makeStars()
-        playMusic()
+//        playMusic()
         showTitle()
         scrollText()
         showPlanet()
