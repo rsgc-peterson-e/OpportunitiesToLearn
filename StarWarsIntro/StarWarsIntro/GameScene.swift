@@ -13,18 +13,15 @@ class Scene: SKScene {
 
     var midPoint : CGPoint? // useful CGPoint object allowing me to just type midpoint instead of the x and y coordinates for the center of the screen.
     
-    // create functions to initialize and control camera node:
+    // Function to Initialize the Camera:
     
-    override var camera: SKCameraNode?
-    
-    func setupCam() {
-        camera = SKCameraNode()
-        self.addChild(camera)
+    func setupCamera() {
+        let cam = SKCameraNode()
+        cam.position = midPoint!
+        self.camera = cam
+        self.addChild(cam)
     }
     
-    func controlCam(pos : CGPoint) {
-        camera?.position = pos
-    }
     
     // Main Animation Functions:
     
@@ -179,6 +176,8 @@ class Scene: SKScene {
     
     func showPlanet() { // will show Alderaan before being destroyed by the death star
         let planet = SKSpriteNode(fileNamed : "Alderaan.PNG") // initialize planet img
+        planet?.setScale(0.5)
+        planet?.position = midPoint!
     }
     
     func showDeathStar() { // will show death star before firing onscreen
@@ -199,6 +198,7 @@ class Scene: SKScene {
     
     override func didMove(to view: SKView) {
         midPoint = CGPoint(x : frame.size.width / 2.0, y : frame.size.height / 2.0)
+        setupCamera()
         aLongTimeAgo()
         makeStars()
 //        playMusic()
