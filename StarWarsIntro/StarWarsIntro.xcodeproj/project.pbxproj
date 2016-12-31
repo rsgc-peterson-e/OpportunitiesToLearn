@@ -19,7 +19,7 @@
 		734E2E5B1E117AC4006B8874 /* Starjedi.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 734E2E5A1E117AC4006B8874 /* Starjedi.ttf */; };
 		734E2E5D1E1181BF006B8874 /* SWCrawlTitle.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 734E2E5C1E1181BF006B8874 /* SWCrawlTitle.ttf */; };
 		734E2E611E120953006B8874 /* Franklin Gothic Book Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 734E2E601E120953006B8874 /* Franklin Gothic Book Regular.ttf */; };
-		7363B4081E15F75F00C5EA7E /* Alderaan.PNG in Resources */ = {isa = PBXBuildFile; fileRef = 7363B4071E15F75F00C5EA7E /* Alderaan.PNG */; };
+		7363B40A1E183C7F00C5EA7E /* planet.png in Resources */ = {isa = PBXBuildFile; fileRef = 7363B4091E183C7F00C5EA7E /* planet.png */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -37,7 +37,7 @@
 		734E2E5A1E117AC4006B8874 /* Starjedi.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = Starjedi.ttf; sourceTree = "<group>"; };
 		734E2E5C1E1181BF006B8874 /* SWCrawlTitle.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = SWCrawlTitle.ttf; sourceTree = "<group>"; };
 		734E2E601E120953006B8874 /* Franklin Gothic Book Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Franklin Gothic Book Regular.ttf"; sourceTree = "<group>"; };
-		7363B4071E15F75F00C5EA7E /* Alderaan.PNG */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Alderaan.PNG; sourceTree = "<group>"; };
+		7363B4091E183C7F00C5EA7E /* planet.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = planet.png; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -75,8 +75,8 @@
 				731034FB1E143FCA00959CE3 /* SWCrawlBody.ttf */,
 				734E2E601E120953006B8874 /* Franklin Gothic Book Regular.ttf */,
 				734E2E5C1E1181BF006B8874 /* SWCrawlTitle.ttf */,
+				7363B4091E183C7F00C5EA7E /* planet.png */,
 				734E2E5A1E117AC4006B8874 /* Starjedi.ttf */,
-				7363B4071E15F75F00C5EA7E /* Alderaan.PNG */,
 				3F1AE8F61E08687B008CEAF9 /* AppDelegate.swift */,
 				3F1AE8FC1E08687B008CEAF9 /* GameScene.swift */,
 				734E2E531E109176006B8874 /* Explosion.sks */,
@@ -148,10 +148,10 @@
 			buildActionMask = 2147483647;
 			files = (
 				3F1AE90D1E086A2A008CEAF9 /* Starwars-logo.png in Resources */,
+				7363B40A1E183C7F00C5EA7E /* planet.png in Resources */,
 				3F1AE9011E08687B008CEAF9 /* Assets.xcassets in Resources */,
 				734E2E541E109176006B8874 /* Explosion.sks in Resources */,
 				3F1AE9041E08687B008CEAF9 /* Main.storyboard in Resources */,
-				7363B4081E15F75F00C5EA7E /* Alderaan.PNG in Resources */,
 				734E2E5B1E117AC4006B8874 /* Starjedi.ttf in Resources */,
 				734E2E611E120953006B8874 /* Franklin Gothic Book Regular.ttf in Resources */,
 				3F977C311E0AC19B00AF2CC0 /* intro.mp3 in Resources */,

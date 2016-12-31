@@ -13,6 +13,9 @@ class Scene: SKScene {
 
     var midPoint : CGPoint? // useful CGPoint object allowing me to just type midpoint instead of the x and y coordinates for the center of the screen.
     
+    var introWait : TimeInterval? // Global variable that will hold the total time in seconds it takes the scrolling text intro to end
+    var planet : SKSpriteNode?
+    
     // Function to Initialize the Camera:
     
     func setupCamera() {
@@ -21,7 +24,6 @@ class Scene: SKScene {
         self.camera = cam
         self.addChild(cam)
     }
-    
     
     // Main Animation Functions:
     
@@ -120,7 +122,7 @@ class Scene: SKScene {
         paragraphs[0][2] = SWLabel("from a hidden base, have won")
         paragraphs[0][3] = SWLabel("their first victory against")
         paragraphs[0][4] = SWLabel("the evil Galactic Empire.")
-        paragraphs[0].remove(at: 5)
+        paragraphs[0].remove(at: 5) // remove empty (nil) indices not populated by lines of text
         paragraphs[0].remove(at: 5)
         
         
@@ -152,6 +154,7 @@ class Scene: SKScene {
         // scroll first paragraph
         for i in 0...paragraphs[0].count - 1 {
             lineWait = SKAction.wait(forDuration: TimeInterval(Double(i) * 1.25))
+            introWait = lineWait.duration
             if (i == 0) {
                 paragraphs[0][i].run(SKAction.sequence([initalWait, lineScroll]))
             } else {
@@ -161,23 +164,34 @@ class Scene: SKScene {
         
         // scroll second paragraph
         let p1Wait = SKAction.wait(forDuration: TimeInterval(Double(paragraphs[0].count - 3) * 1.25))
+        introWait! = introWait! + p1Wait.duration
         for j in 0...paragraphs[1].count - 1 {
             let wait = SKAction.wait(forDuration: TimeInterval(Double(j) * 1.25))
             paragraphs[1][j].run(SKAction.sequence([initalWait, p1Wait, wait, lineWait, lineScroll]))
         }
+        introWait! = introWait! + TimeInterval(Double(paragraphs[1].count - 1) * 1.25)
+        
         
         // scroll third paragraph
         let p2Wait = SKAction.wait(forDuration: p1Wait.duration + TimeInterval(Double(paragraphs[1].count + 1) * 1.25))
+        introWait! = introWait! + p2Wait.duration
         for k in 0...paragraphs[2].count - 1 {
             let wait = SKAction.wait(forDuration: TimeInterval(Double(k) * 1.25))
             paragraphs[2][k].run(SKAction.sequence([initalWait, p2Wait, wait, lineWait, lineScroll]))
         }
+        introWait! = introWait! + TimeInterval(Double(paragraphs[2].count - 1) * 1.25)
+        introWait! = introWait! + initalWait.duration + (waitForTitleScaleDown.duration / 2) - 1.5
     }
     
     func showPlanet() { // will show Alderaan before being destroyed by the death star
-        let planet = SKSpriteNode(fileNamed : "Alderaan.PNG") // initialize planet img
-        planet?.setScale(0.5)
-        planet?.position = midPoint!
+        planet = SKSpriteNode(imageNamed : "planet.png") // initialize planet img
+        planet!.setScale(0.5)
+        planet!.position = midPoint!
+        let displayAlderaan = SKAction.run {
+            self.addChild(self.planet!)
+        }
+        let sequence = SKAction.sequence([SKAction.wait(forDuration: introWait!), displayAlderaan])
+        self.run(sequence)
     }
     
     func showDeathStar() { // will show death star before firing onscreen
@@ -201,7 +215,7 @@ class Scene: SKScene {
         setupCamera()
         aLongTimeAgo()
         makeStars()
-//        playMusic()
+        playMusic()
         showTitle()
         scrollText()
         showPlanet()
