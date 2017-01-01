@@ -16,6 +16,8 @@ class Scene: SKScene {
     var introWait : TimeInterval? // Global variable that will hold the total time in seconds it takes the scrolling text intro to end
     var planet : SKSpriteNode?
     
+    var camIsPanned : Bool = false
+    
     // Function to Initialize the Camera:
     
     func setupCamera() {
@@ -190,7 +192,15 @@ class Scene: SKScene {
         let displayAlderaan = SKAction.run {
             self.addChild(self.planet!)
         }
-        let sequence = SKAction.sequence([SKAction.wait(forDuration: introWait!), displayAlderaan])
+        
+        let moveCam = SKAction.run {
+            let width = Int(self.frame.size.width)
+            for i in 0...width {
+                self.camera?.position.x = (self.camera?.position.x)! - CGFloat(i)
+            }
+        }
+        
+        let sequence = SKAction.sequence([SKAction.wait(forDuration: introWait!), displayAlderaan, moveCam])
         self.run(sequence)
     }
     
@@ -215,10 +225,10 @@ class Scene: SKScene {
         setupCamera()
         aLongTimeAgo()
         makeStars()
-        playMusic()
+//        playMusic()
         showTitle()
         scrollText()
-        showPlanet()
+//        showPlanet()
         showDeathStar()
         fireDeathStar()
     }
@@ -228,6 +238,9 @@ class Scene: SKScene {
     }
     
     override func update(_ currentTime : TimeInterval) {
-        
+        if (camIsPanned == false) {
+            camIsPanned = true
+            showPlanet()
+        }
     }
 }
