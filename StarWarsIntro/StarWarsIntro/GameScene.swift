@@ -19,6 +19,10 @@ class Scene: SKScene {
     var camIsPanned : Bool = false
     var waitCompleted : Bool = false
     
+    var panAmount : Double?
+    
+    let finalCameraPos = CGPoint(x: -228.125, y: 300.0) // stores final position of the camera after the pan
+    
     // Function to Initialize the Camera:
     
     func setupCamera() {
@@ -189,20 +193,8 @@ class Scene: SKScene {
     func showPlanet() { // will show Alderaan before being destroyed by the death star
         planet = SKSpriteNode(imageNamed : "planet.png") // initialize planet img
         planet!.setScale(0.5)
-        planet!.position = midPoint!
-        let displayAlderaan = SKAction.run {
-            self.addChild(self.planet!)
-        }
-        
-        let moveCam = SKAction.run {
-            let width = Int(self.frame.size.width)
-            for i in 0...width {
-                self.camera?.position.x = (self.camera?.position.x)! - CGFloat(i)
-            }
-        }
-        
-        let sequence = SKAction.sequence([SKAction.wait(forDuration: introWait!), displayAlderaan, moveCam])
-        self.run(sequence)
+        planet!.position = CGPoint(x: finalCameraPos.x - frame.size.width / 4, y: finalCameraPos.y - frame.size.height / 6)
+        self.addChild(planet!)
     }
     
     func showDeathStar() { // will show death star before firing onscreen
@@ -219,17 +211,27 @@ class Scene: SKScene {
         scene?.addChild(explosion!)
     }
     
+    func waitBeforePan() { // functions that will use SKActions to make sure the correct time is waited before the camera pans to Alderaan and the death star
+        let sequence = SKAction.sequence([SKAction.wait(forDuration: introWait!), SKAction.run {
+            self.waitCompleted = true
+            }])
+        
+        self.run(sequence)
+    }
+    
     // Overrided SpriteKit Functions:
     
     override func didMove(to view: SKView) {
         midPoint = CGPoint(x : frame.size.width / 2.0, y : frame.size.height / 2.0)
+        panAmount = Double(frame.size.width / 128)
         setupCamera()
         aLongTimeAgo()
         makeStars()
 //        playMusic()
         showTitle()
         scrollText()
-//        showPlanet()
+        waitBeforePan()
+        showPlanet()
         showDeathStar()
         fireDeathStar()
     }
@@ -238,13 +240,15 @@ class Scene: SKScene {
         
     }
     
-    var i : Double = 0.0
+    var i : Double = 0.0 // iterator variable for camera pan
     override func update(_ currentTime : TimeInterval) {
-        if (camIsPanned == false && i < Double(frame.size.width / 128)) {
+        if (camIsPanned == false && i < panAmount! && waitCompleted == true) {
             i += 0.03125
             self.camera?.position.x = (self.camera?.position.x)! - CGFloat(i)
-        } else {
+        } else if (i >= panAmount!) {
             camIsPanned = true
+            print("x: \((self.camera?.position.x)!)") // x = -228.125
+            print("y: \((self.camera?.position.y)!)") // y = 300.0
         }
     }
 }
