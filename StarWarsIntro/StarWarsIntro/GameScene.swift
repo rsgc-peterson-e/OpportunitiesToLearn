@@ -17,6 +17,7 @@ class Scene: SKScene {
     var planet : SKSpriteNode?
     
     var camIsPanned : Bool = false
+    var waitCompleted : Bool = false
     
     // Function to Initialize the Camera:
     
@@ -236,10 +237,11 @@ class Scene: SKScene {
     override func didSimulatePhysics() {
         
     }
-    var i : Double = 0
+    
+    var i : Double = 0.0
     override func update(_ currentTime : TimeInterval) {
-        if (camIsPanned == false && i < Double(frame.size.width)) {
-            i += 0.5
+        if (camIsPanned == false && i < Double(frame.size.width / 128)) {
+            i += 0.03125
             self.camera?.position.x = (self.camera?.position.x)! - CGFloat(i)
         } else {
             camIsPanned = true
