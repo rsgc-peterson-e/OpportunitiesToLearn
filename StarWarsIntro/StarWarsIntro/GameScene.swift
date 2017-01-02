@@ -236,11 +236,13 @@ class Scene: SKScene {
     override func didSimulatePhysics() {
         
     }
-    
+    var i : Double = 0
     override func update(_ currentTime : TimeInterval) {
-        if (camIsPanned == false) {
+        if (camIsPanned == false && i < Double(frame.size.width)) {
+            i += 0.5
+            self.camera?.position.x = (self.camera?.position.x)! - CGFloat(i)
+        } else {
             camIsPanned = true
-            showPlanet()
         }
     }
 }
