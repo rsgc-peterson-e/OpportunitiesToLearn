@@ -192,13 +192,18 @@ class Scene: SKScene {
     
     func showPlanet() { // will show Alderaan before being destroyed by the death star
         planet = SKSpriteNode(imageNamed : "planet.png") // initialize planet img
-        planet!.setScale(0.5)
-        planet!.position = CGPoint(x: finalCameraPos.x - frame.size.width / 4, y: finalCameraPos.y - frame.size.height / 6)
+        planet!.setScale(1)
+        planet!.position = CGPoint(x: finalCameraPos.x - frame.size.width / 6, y: finalCameraPos.y - frame.size.height / 8)
         self.addChild(planet!)
     }
     
-    func showDeathStar() { // will show death star before firing onscreen
-        
+    func showDeathStar() { // will draw Death Star using SKShapeNodes and display onscreen following the camera pan
+        let circle = SKShapeNode(circleOfRadius : 75)
+        circle.position = CGPoint(x: finalCameraPos.x + frame.size.width / 6, y: finalCameraPos.y)
+        circle.strokeColor = SKColor.black
+        circle.glowWidth = 2.0
+        circle.fillColor = SKColor.gray
+        self.addChild(circle)
     }
     
     func fireDeathStar() {
