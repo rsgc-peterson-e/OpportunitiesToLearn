@@ -198,12 +198,24 @@ class Scene: SKScene {
     }
     
     func showDeathStar() { // will draw Death Star using SKShapeNodes and display onscreen following the camera pan
-        let circle = SKShapeNode(circleOfRadius : 75)
-        circle.position = CGPoint(x: finalCameraPos.x + frame.size.width / 6, y: finalCameraPos.y)
-        circle.strokeColor = SKColor.black
-        circle.glowWidth = 2.0
-        circle.fillColor = SKColor.gray
-        self.addChild(circle)
+        var layers = [SKShapeNode]()
+        
+        // draw the base circle that more shapes will be added on top of to recreate the Death Star
+        let radius : CGFloat = 75
+        layers.append(SKShapeNode(circleOfRadius : radius))
+        layers[0].position = CGPoint(x: finalCameraPos.x + frame.size.width / 6, y: finalCameraPos.y)
+        layers[0].strokeColor = SKColor.black
+        layers[0].glowWidth = 2.0
+        layers[0].fillColor = SKColor.gray
+        
+        // Draw Stripe of darker gray color along the middle of the Death Star
+        let stripe = CGRect(x: layers[0].position.x, y: layers[0].position.y, width: radius * 2, height: 25)
+        layers.append(SKShapeNode(rect : stripe))
+        layers[1].fillColor = NSColor(cgColor: CGColor(gray: 100.0/255.0, alpha: 1.0))!
+        
+        for i in 0...layers.count - 1 { // for loop iterating over layers array display the individual shapes
+            self.addChild(layers[i])
+        }
     }
     
     func fireDeathStar() {
