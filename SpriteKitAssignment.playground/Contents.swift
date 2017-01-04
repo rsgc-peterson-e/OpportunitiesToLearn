@@ -14,6 +14,7 @@ let midPoint = CGPoint(x: frame.size.width / 2.0, y: frame.size.height / 2.0)
 title.setScale(1)
 title.position = midPoint
 scene.addChild(title)
+title.run(actionRepeat)
 view.presentScene(scene)
 PlaygroundPage.current.liveView = view
 

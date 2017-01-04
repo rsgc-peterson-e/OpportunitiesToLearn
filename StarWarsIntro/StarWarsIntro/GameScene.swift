@@ -209,9 +209,10 @@ class Scene: SKScene {
         layers[0].fillColor = SKColor.gray
         
         // Draw Stripe of darker gray color along the middle of the Death Star
-        let stripe = CGRect(x: layers[0].position.x, y: layers[0].position.y, width: radius * 2, height: 25)
+        let stripe = CGRect(x: layers[0].position.x - radius + 4, y: layers[0].position.y - 10, width: (radius * 2) - 8, height: 20)
         layers.append(SKShapeNode(rect : stripe))
-        layers[1].fillColor = NSColor(cgColor: CGColor(gray: 100.0/255.0, alpha: 1.0))!
+        layers[1].fillColor = NSColor(cgColor: CGColor(gray: 75.0/255.0, alpha: 1.0))!
+        layers[1].strokeColor = SKColor.black
         
         for i in 0...layers.count - 1 { // for loop iterating over layers array display the individual shapes
             self.addChild(layers[i])
@@ -235,7 +236,6 @@ class Scene: SKScene {
         
         self.run(sequence)
     }
-    
     // Overrided SpriteKit Functions:
     
     override func didMove(to view: SKView) {
