@@ -23,6 +23,8 @@ class Scene: SKScene {
     
     let finalCameraPos = CGPoint(x: -228.125, y: 300.0) // stores final position of the camera after the pan
     
+    var layers = [SKShapeNode]() // holds all the different SKShapeNodes required to draw the Death Star
+    
     // Function to Initialize the Camera:
     
     func setupCamera() {
@@ -198,34 +200,73 @@ class Scene: SKScene {
     }
     
     func showDeathStar() { // will draw Death Star using SKShapeNodes and display onscreen following the camera pan
-        var layers = [SKShapeNode]()
+        
+        // Make closure that will return the count of layers array so that when changing the order of the layers the individual indices being accessed will not need to be changed to get the shapes to display in the correct order
+        let layerCount : () -> (Int) = {
+            return self.layers.count - 1
+        }
         
         // draw the base circle that more shapes will be added on top of to recreate the Death Star
-        let radius : CGFloat = 75
-        layers.append(SKShapeNode(circleOfRadius : radius))
-        layers[0].position = CGPoint(x: finalCameraPos.x + frame.size.width / 6, y: finalCameraPos.y)
-        layers[0].strokeColor = SKColor.black
-        layers[0].glowWidth = 2.0
-        layers[0].fillColor = SKColor.gray
+        let deathStarRadius : CGFloat = 75
+        layers.append(SKShapeNode(circleOfRadius : deathStarRadius))
+        layers[layerCount()].position = CGPoint(x: finalCameraPos.x + frame.size.width / 5.5, y: finalCameraPos.y + frame.size.height / 4)
+        layers[layerCount()].strokeColor = SKColor.black
+        layers[layerCount()].glowWidth = 2.0
+        layers[layerCount()].fillColor = SKColor.gray
         
         // Draw Stripe of darker gray color along the middle of the Death Star
-        let stripe = CGRect(x: layers[0].position.x - radius + 4, y: layers[0].position.y - 10, width: (radius * 2) - 8, height: 20)
+        let stripePos = CGPoint(x: layers[0].position.x - deathStarRadius + 4, y: layers[layerCount()].position.y - 10)
+        let stripeWidth = (deathStarRadius * 2) - 8
+        let stripeHeight : CGFloat = 20.0
+        let stripe = CGRect(x: stripePos.x, y: stripePos.y, width: stripeWidth, height: stripeHeight)
         layers.append(SKShapeNode(rect : stripe))
-        layers[1].fillColor = NSColor(cgColor: CGColor(gray: 75.0/255.0, alpha: 1.0))!
-        layers[1].strokeColor = SKColor.black
+        layers[layerCount()].fillColor = NSColor(cgColor: CGColor(gray: 75.0/255.0, alpha: 1.0))!
+        layers[layerCount()].strokeColor = SKColor.black
+        
+        // Draw the Circle that the lasers fire from
+        let weaponRadius : CGFloat = 25.0
+        layers.append(SKShapeNode(circleOfRadius: weaponRadius))
+        layers[layerCount()].fillColor = NSColor(cgColor: CGColor(gray: 105.0/255.0, alpha: 1.0))!
+        layers[layerCount()].strokeColor = SKColor.black
+        layers[layerCount()].position = CGPoint(x: stripePos.x + stripeWidth / 2, y: stripePos.y + deathStarRadius / 1.5)
+        
+        // Draw the dot in the middle of the circle
+        layers.append(SKShapeNode(circleOfRadius: 4))
+        layers[layerCount()].fillColor = SKColor.black
+        layers[layerCount()].strokeColor = SKColor.black
+        layers[layerCount()].position = layers[layerCount() - 1].position
+        
+        // Draw lines to add detail to the circle that the laser fires from
+        
+        // create some base points to prevent code repitition when filling the array with coordinates
+        let center = layers[layerCount() - 1].position
+        let right = CGPoint(x: layers[layerCount() - 1].position.x + weaponRadius, y: layers[layerCount()].position.y)
+        let left = CGPoint(x: layers[layerCount() - 1].position.x - weaponRadius, y: layers[layerCount()].position.y)
+        let top = CGPoint(x: center.x, y: center.y + weaponRadius)
+        let bottom = CGPoint(x: center.x, y: center.y - weaponRadius)
+        
+        // create the array of CGPoints and the SKShapeNode that will connect them
+        var points : [CGPoint] = [center, left, right, center, top, bottom, center]
+        layers.append(SKShapeNode(points: &points, count: points.count))
+        layers[layerCount()].fillColor = SKColor.black
+        layers[layerCount()].strokeColor = SKColor.black
+        
         
         for i in 0...layers.count - 1 { // for loop iterating over layers array display the individual shapes
             self.addChild(layers[i])
         }
+        camera?.position = finalCameraPos
     }
     
     func fireDeathStar() {
-        
+        // Make SKAction sequence to wait for camera to pan over to the death star and fire on Alderaan after a few seconds
+        let wait = SKAction.wait(forDuration: introWait!)
+        let sequence = SKAction.sequence([wait])
     }
     
     func destroyPlanet() {
         let explosion = SKEmitterNode(fileNamed : "Explosion")
-        explosion?.position = CGPoint(x : (frame.size.width / 2.0) - 100, y : frame.size.height / 2.0)
+        explosion?.position = planet!.position
         scene?.addChild(explosion!)
     }
     
@@ -264,8 +305,8 @@ class Scene: SKScene {
             self.camera?.position.x = (self.camera?.position.x)! - CGFloat(i)
         } else if (i >= panAmount!) {
             camIsPanned = true
-            print("x: \((self.camera?.position.x)!)") // x = -228.125
-            print("y: \((self.camera?.position.y)!)") // y = 300.0
+            //print("x: \((self.camera?.position.x)!)") // x = -228.125
+            //print("y: \((self.camera?.position.y)!)") // y = 300.0
         }
     }
 }
