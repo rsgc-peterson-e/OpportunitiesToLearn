@@ -27,6 +27,8 @@ class Scene: SKScene {
     
     var weaponLines = [[CGPoint]](repeating : [CGPoint](repeating : CGPoint(x: 0, y: 0), count : 2), count : 5) //array that will hold the enpoints of several lines that will be used to replicate the Death Star firing
     
+    var timeBeforeExplosion : TimeInterval?
+    
     // Function to Initialize the Camera:
     
     func setupCamera() {
@@ -264,7 +266,8 @@ class Scene: SKScene {
         weaponLines[3] = [center, bottom]
         
         // line from center to planet making it look like a laser firing on Alderaan
-        weaponLines[4] = [center, planet!.position]
+        weaponLines[4] = [center, CGPoint(x: planet!.position.x + 105, y: planet!.position.y + 50)]
+        //camera?.position = finalCameraPos // TEMPORARY
         
         // use for loop to add lines to the layers array so they can be displayed onscreen
         for j in 0...weaponLines.count - 1 {
@@ -273,6 +276,7 @@ class Scene: SKScene {
             if (j == 4) {
                 layers[layerCount()].fillColor = SKColor.clear
                 layers[layerCount()].strokeColor = SKColor.clear
+                layers[layerCount()].lineWidth = 5
             } else {
                 layers[layerCount()].fillColor = SKColor.black
                 layers[layerCount()].strokeColor = SKColor.black
@@ -286,6 +290,10 @@ class Scene: SKScene {
     }
     
     func fireDeathStar() {
+        // make sure laser shows overtop of planet image
+        
+        planet!.zPosition = -1
+        
         // Make SKAction sequence to wait for camera to pan over to the death star and fire on Alderaan after a few seconds
         let wait = SKAction.wait(forDuration: introWait! + 5)
         // make closure that takes an SKShapeNode and returns a new one with the correct coloring to show that the death star is preparing to fire
@@ -296,17 +304,22 @@ class Scene: SKScene {
         }
         let startIndex = layers.count - (weaponLines.count + 1) // starts loop at the point in the layers array the lines are at
         for i in startIndex...layers.count - 1 {
-            let sequence = SKAction.sequence([wait, SKAction.wait(forDuration: 1.5 * TimeInterval(i - startIndex)), SKAction.run {
+            let extraWait : TimeInterval = 1.5 * Double(i - startIndex)
+            let sequence = SKAction.sequence([wait, SKAction.wait(forDuration: extraWait), SKAction.run {
                 self.layers[i] = prepareToFire(self.layers[i])
                 }])
             layers[i].run(sequence)
         }
+        timeBeforeExplosion = introWait! + TimeInterval(6 * 1.5)
     }
     
     func destroyPlanet() {
         let explosion = SKEmitterNode(fileNamed : "Explosion")
         explosion?.position = planet!.position
-        scene?.addChild(explosion!)
+        let sequence = SKAction.sequence([SKAction.wait(forDuration: timeBeforeExplosion!o ), SKAction.run {
+            self.addChild(explosion!)
+            }])
+        self.run(sequence)
     }
     
     func waitBeforePan() { // functions that will use SKActions to make sure the correct time is waited before the camera pans to Alderaan and the death star
@@ -331,6 +344,7 @@ class Scene: SKScene {
         showPlanet()
         showDeathStar()
         fireDeathStar()
+        destroyPlanet()
     }
     
     override func didSimulatePhysics() {
