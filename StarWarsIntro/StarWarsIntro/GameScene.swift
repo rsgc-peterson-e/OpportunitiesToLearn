@@ -270,7 +270,6 @@ class Scene: SKScene {
         
         // line from center to planet making it look like a laser firing on Alderaan
         weaponLines[4] = [center, CGPoint(x: planet!.position.x + 105, y: planet!.position.y + 50)]
-        //camera?.position = finalCameraPos // TEMPORARY
         
         // use for loop to add lines to the layers array so they can be displayed onscreen
         for j in 0...weaponLines.count - 1 {
@@ -289,7 +288,6 @@ class Scene: SKScene {
         for i in 0...layers.count - 1 { // for loop iterating over layers array display the individual shapes
             self.addChild(layers[i])
         }
-        //camera?.position = finalCameraPos // temporary line allowing me to view changes without waiting for the intro to finish
     }
     
     func fireDeathStar() {
@@ -390,16 +388,12 @@ class Scene: SKScene {
             self.camera?.position.x = (self.camera?.position.x)! - CGFloat(i)
         } else if (i >= panAmount!) {
             camIsPanned = true
-            //print("x: \((self.camera?.position.x)!)") // x = -228.125
-            //print("y: \((self.camera?.position.y)!)") // y = 300.0
         }
         if (animationFinished == true && j < panAmount! && endScreenShowing == false) {
             j += 0.03125
             self.camera?.position.y = (self.camera?.position.y)! + CGFloat(j)
         } else if (j >= panAmount!) {
             endScreenShowing = true
-            //print("x: \((self.camera?.position.x)!)") // x = -228.125
-            //print("y: \((self.camera?.position.y)!)") // y = 928.125
         }
     }
 }
