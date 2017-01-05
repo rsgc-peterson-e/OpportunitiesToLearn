@@ -25,6 +25,8 @@ class Scene: SKScene {
     
     var layers = [SKShapeNode]() // holds all the different SKShapeNodes required to draw the Death Star
     
+    var weaponLines = [[CGPoint]](repeating : [CGPoint](repeating : CGPoint(x: 0, y: 0), count : 2), count : 5) //array that will hold the enpoints of several lines that will be used to replicate the Death Star firing
+    
     // Function to Initialize the Camera:
     
     func setupCamera() {
@@ -245,23 +247,60 @@ class Scene: SKScene {
         let top = CGPoint(x: center.x, y: center.y + weaponRadius)
         let bottom = CGPoint(x: center.x, y: center.y - weaponRadius)
         
-        // create the array of CGPoints and the SKShapeNode that will connect them
-        var points : [CGPoint] = [center, left, right, center, top, bottom, center]
-        layers.append(SKShapeNode(points: &points, count: points.count))
-        layers[layerCount()].fillColor = SKColor.black
-        layers[layerCount()].strokeColor = SKColor.black
+        // create the array of CGPoints and the SKShapeNodes that will connect them
+        var weaponLines = [[CGPoint]](repeating : [CGPoint](repeating : center, count : 2), count : 5)
+        // assign points to weaponLines array
         
+        // line from center to the right
+        weaponLines[0] = [center, right]
+        
+        // line from center to the left
+        weaponLines[1] = [center, left]
+        
+        // line from center to top
+        weaponLines[2] = [center, top]
+        
+        // line from center to bottom
+        weaponLines[3] = [center, bottom]
+        
+        // line from center to planet making it look like a laser firing on Alderaan
+        weaponLines[4] = [center, planet!.position]
+        
+        // use for loop to add lines to the layers array so they can be displayed onscreen
+        for j in 0...weaponLines.count - 1 {
+            var points : [CGPoint] = weaponLines[j]
+            layers.append(SKShapeNode(points: &points, count: points.count))
+            if (j == 4) {
+                layers[layerCount()].fillColor = SKColor.clear
+                layers[layerCount()].strokeColor = SKColor.clear
+            } else {
+                layers[layerCount()].fillColor = SKColor.black
+                layers[layerCount()].strokeColor = SKColor.black
+            }
+        }
         
         for i in 0...layers.count - 1 { // for loop iterating over layers array display the individual shapes
             self.addChild(layers[i])
         }
-        camera?.position = finalCameraPos
+        //camera?.position = finalCameraPos // temporary line allowing me to view changes without waiting for the intro to finish
     }
     
     func fireDeathStar() {
         // Make SKAction sequence to wait for camera to pan over to the death star and fire on Alderaan after a few seconds
-        let wait = SKAction.wait(forDuration: introWait!)
-        let sequence = SKAction.sequence([wait])
+        let wait = SKAction.wait(forDuration: introWait! + 5)
+        // make closure that takes an SKShapeNode and returns a new one with the correct coloring to show that the death star is preparing to fire
+        let prepareToFire : (SKShapeNode) -> (SKShapeNode) = { shape in
+            shape.fillColor = SKColor.green
+            shape.strokeColor = SKColor.green
+            return shape
+        }
+        let startIndex = layers.count - (weaponLines.count + 1) // starts loop at the point in the layers array the lines are at
+        for i in startIndex...layers.count - 1 {
+            let sequence = SKAction.sequence([wait, SKAction.wait(forDuration: 1.5 * TimeInterval(i - startIndex)), SKAction.run {
+                self.layers[i] = prepareToFire(self.layers[i])
+                }])
+            layers[i].run(sequence)
+        }
     }
     
     func destroyPlanet() {
