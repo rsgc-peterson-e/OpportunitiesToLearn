@@ -310,14 +310,26 @@ class Scene: SKScene {
                 }])
             layers[i].run(sequence)
         }
-        timeBeforeExplosion = introWait! + TimeInterval(6 * 1.5)
+        timeBeforeExplosion = introWait! + TimeInterval(6 * 1.5) + 4
     }
     
     func destroyPlanet() {
-        let explosion = SKEmitterNode(fileNamed : "Explosion")
-        explosion?.position = planet!.position
-        let sequence = SKAction.sequence([SKAction.wait(forDuration: timeBeforeExplosion!o ), SKAction.run {
-            self.addChild(explosion!)
+        let sequence = SKAction.sequence([SKAction.wait(forDuration: timeBeforeExplosion!), SKAction.run {
+            let explosion = SKEmitterNode(fileNamed : "Explosion")
+            explosion?.position = self.planet!.position
+            self.addChild(explosion!) // trigger the explosion after waiting the correct amount of time
+            }, SKAction.wait(forDuration: 0.5), SKAction.run {
+                self.planet!.removeFromParent()
+                let startIndex = self.layers.count - (self.weaponLines.count + 1)
+                for i in startIndex...self.layers.count - 1 {
+                    if (i - startIndex == 5) {
+                        self.layers[i].fillColor = SKColor.clear
+                        self.layers[i].strokeColor = SKColor.clear
+                    } else {
+                        self.layers[i].fillColor = SKColor.black
+                        self.layers[i].strokeColor = SKColor.black
+                    }
+                }
             }])
         self.run(sequence)
     }
@@ -337,7 +349,7 @@ class Scene: SKScene {
         setupCamera()
         aLongTimeAgo()
         makeStars()
-//        playMusic()
+        playMusic()
         showTitle()
         scrollText()
         waitBeforePan()
