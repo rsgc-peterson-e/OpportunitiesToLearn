@@ -20,6 +20,7 @@
 		734E2E5D1E1181BF006B8874 /* SWCrawlTitle.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 734E2E5C1E1181BF006B8874 /* SWCrawlTitle.ttf */; };
 		734E2E611E120953006B8874 /* Franklin Gothic Book Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 734E2E601E120953006B8874 /* Franklin Gothic Book Regular.ttf */; };
 		7363B40A1E183C7F00C5EA7E /* planet.png in Resources */ = {isa = PBXBuildFile; fileRef = 7363B4091E183C7F00C5EA7E /* planet.png */; };
+		73C417FA1E1EEF05003DE94F /* deathStarFire.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 73C417F91E1EEF05003DE94F /* deathStarFire.mp3 */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -38,6 +39,7 @@
 		734E2E5C1E1181BF006B8874 /* SWCrawlTitle.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = SWCrawlTitle.ttf; sourceTree = "<group>"; };
 		734E2E601E120953006B8874 /* Franklin Gothic Book Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Franklin Gothic Book Regular.ttf"; sourceTree = "<group>"; };
 		7363B4091E183C7F00C5EA7E /* planet.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = planet.png; sourceTree = "<group>"; };
+		73C417F91E1EEF05003DE94F /* deathStarFire.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = deathStarFire.mp3; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -71,6 +73,7 @@
 			isa = PBXGroup;
 			children = (
 				3F977C301E0AC19B00AF2CC0 /* intro.mp3 */,
+				73C417F91E1EEF05003DE94F /* deathStarFire.mp3 */,
 				3F1AE90C1E086A2A008CEAF9 /* Starwars-logo.png */,
 				731034FB1E143FCA00959CE3 /* SWCrawlBody.ttf */,
 				734E2E601E120953006B8874 /* Franklin Gothic Book Regular.ttf */,
@@ -155,6 +158,7 @@
 				734E2E5B1E117AC4006B8874 /* Starjedi.ttf in Resources */,
 				734E2E611E120953006B8874 /* Franklin Gothic Book Regular.ttf in Resources */,
 				3F977C311E0AC19B00AF2CC0 /* intro.mp3 in Resources */,
+				73C417FA1E1EEF05003DE94F /* deathStarFire.mp3 in Resources */,
 				734E2E5D1E1181BF006B8874 /* SWCrawlTitle.ttf in Resources */,
 				731034FC1E143FCA00959CE3 /* SWCrawlBody.ttf in Resources */,
 			);

@@ -295,7 +295,7 @@ class Scene: SKScene {
         planet!.zPosition = -1
         
         // Make SKAction sequence to wait for camera to pan over to the death star and fire on Alderaan after a few seconds
-        let wait = SKAction.wait(forDuration: introWait! + 5)
+        let wait = SKAction.wait(forDuration: introWait! + 8.5)
         // make closure that takes an SKShapeNode and returns a new one with the correct coloring to show that the death star is preparing to fire
         let prepareToFire : (SKShapeNode) -> (SKShapeNode) = { shape in
             shape.fillColor = SKColor.green
@@ -310,7 +310,12 @@ class Scene: SKScene {
                 }])
             layers[i].run(sequence)
         }
-        timeBeforeExplosion = introWait! + TimeInterval(6 * 1.5) + 4
+        timeBeforeExplosion = introWait! + TimeInterval(6 * 1.5) + 4 + 3.5
+        
+        // wait and play the Death Star firing noise
+        let fireSound = SKAction.playSoundFileNamed("deathStarFire.mp3", waitForCompletion: false)
+        let fireSequence = SKAction.sequence([SKAction.wait(forDuration: introWait! + 8.5), fireSound])
+        self.run(fireSequence)
     }
     
     func destroyPlanet() {
@@ -366,7 +371,7 @@ class Scene: SKScene {
     var i : Double = 0.0 // iterator variable for camera pan
     override func update(_ currentTime : TimeInterval) {
         if (camIsPanned == false && i < panAmount! && waitCompleted == true) {
-            i += 0.03125
+            i += 0.03125 //0.03125
             self.camera?.position.x = (self.camera?.position.x)! - CGFloat(i)
         } else if (i >= panAmount!) {
             camIsPanned = true
