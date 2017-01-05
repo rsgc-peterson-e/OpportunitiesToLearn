@@ -2,7 +2,7 @@
 //  GameScene.swift
 //  StarWarsIntro
 //
-//  Created by Dat Boi on 2016-12-19.
+//  Created by Ethan Peterson on 2016-12-19.
 //  Copyright © 2016 Ethan Peterson. All rights reserved.
 //
 
@@ -16,12 +16,15 @@ class Scene: SKScene {
     var introWait : TimeInterval? // Global variable that will hold the total time in seconds it takes the scrolling text intro to end
     var planet : SKSpriteNode?
     
-    var camIsPanned : Bool = false
-    var waitCompleted : Bool = false
+    var camIsPanned : Bool = false // true if camera has panned to death Star and Alderaan
+    var waitCompleted : Bool = false // true if the correct amount of time has been waited before panning the camera
+    var animationFinished : Bool = false // true if the animation is completed and the camera can be panned to the end screen
+    var endScreenShowing : Bool = false // true if the end screen is showing signalling it is O.K to show the "The End" text
     
     var panAmount : Double?
     
     let finalCameraPos = CGPoint(x: -228.125, y: 300.0) // stores final position of the camera after the pan
+    let endScreenCameraPos = CGPoint(x: -228.125, y: 928.125) // stores position of camera at the end screen
     
     var layers = [SKShapeNode]() // holds all the different SKShapeNodes required to draw the Death Star
     
@@ -61,7 +64,7 @@ class Scene: SKScene {
         // wait until titleScaleDown is complete to start the scrolling text
     }
     
-    func makeStars() {
+    func makeStars() { // particle emitter taken from nyan cat playground with some modifications to the properties to better suit my project.
         let starEmitter = SKEmitterNode() // make emitter to spawn stars in the star wars animation
         starEmitter.particleLifetime = 40
         starEmitter.particleBlendMode = SKBlendMode.alpha
@@ -346,6 +349,15 @@ class Scene: SKScene {
         
         self.run(sequence)
     }
+    
+    func finishAnimation() {
+        let animationWait = SKAction.wait(forDuration: timeBeforeExplosion! + 8)
+        let sequence = SKAction.sequence([animationWait, SKAction.run {
+            self.animationFinished = true
+            }])
+        self.run(sequence)
+    }
+    
     // Overrided SpriteKit Functions:
     
     override func didMove(to view: SKView) {
@@ -362,13 +374,16 @@ class Scene: SKScene {
         showDeathStar()
         fireDeathStar()
         destroyPlanet()
+        finishAnimation()
     }
     
     override func didSimulatePhysics() {
         
     }
     
-    var i : Double = 0.0 // iterator variable for camera pan
+    var i : Double = 0.0 // iterator variable for camera pan to Death Star and Alderaan
+    var j : Double = 0.0 // iterator variable for camera pan to upwards away from Death Star / Alderaan to end screen
+    var k : Double = 0.0 // iterator variable to change opacity of SKLabelNode saying "The End"
     override func update(_ currentTime : TimeInterval) {
         if (camIsPanned == false && i < panAmount! && waitCompleted == true) {
             i += 0.03125 //0.03125
@@ -377,6 +392,14 @@ class Scene: SKScene {
             camIsPanned = true
             //print("x: \((self.camera?.position.x)!)") // x = -228.125
             //print("y: \((self.camera?.position.y)!)") // y = 300.0
+        }
+        if (animationFinished == true && j < panAmount! && endScreenShowing == false) {
+            j += 0.03125
+            self.camera?.position.y = (self.camera?.position.y)! + CGFloat(j)
+        } else if (j >= panAmount!) {
+            endScreenShowing = true
+            //print("x: \((self.camera?.position.x)!)") // x = -228.125
+            //print("y: \((self.camera?.position.y)!)") // y = 928.125
         }
     }
 }
