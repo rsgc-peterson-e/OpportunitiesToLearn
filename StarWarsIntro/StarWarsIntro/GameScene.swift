@@ -16,6 +16,8 @@ class Scene: SKScene {
     var introWait : TimeInterval? // Global variable that will hold the total time in seconds it takes the scrolling text intro to end
     var planet : SKSpriteNode?
     
+    let textColor = SKColor(red : 252/255, green : 223/255, blue : 43/255, alpha : 1) // useful variable to prevent retyping the color data for the scrolling text.
+    
     var camIsPanned : Bool = false // true if camera has panned to death Star and Alderaan
     var waitCompleted : Bool = false // true if the correct amount of time has been waited before panning the camera
     var animationFinished : Bool = false // true if the animation is completed and the camera can be panned to the end screen
@@ -25,6 +27,7 @@ class Scene: SKScene {
     
     let finalCameraPos = CGPoint(x: -228.125, y: 300.0) // stores final position of the camera after the pan
     let endScreenCameraPos = CGPoint(x: -228.125, y: 928.125) // stores position of camera at the end screen
+    var end : SKLabelNode? // variable storing text to be shown on the end screen
     
     var layers = [SKShapeNode]() // holds all the different SKShapeNodes required to draw the Death Star
     
@@ -90,7 +93,6 @@ class Scene: SKScene {
     func scrollText() { // will recreate opening crawl of star wars a new hope
         let scrollDur : TimeInterval = 30
         let titleScaleDownDur : TimeInterval = 14 // stores time interval it takes for star wars title to scale down and leave the screen
-        let textColor = SKColor(red : 252/255, green : 223/255, blue : 43/255, alpha : 1) // useful variable to prevent retyping the color data for the scrolling text.
         
         // create SKLabel showing the episode number to be displayed following the star wars logo leaving the screen:
         
@@ -121,7 +123,7 @@ class Scene: SKScene {
         // create closure to add the correct properties to SKLabelNodes that will be present in the paragraphs array:
         let SWLabel : (String) -> (SKLabelNode) = { text in // closure takes string to be shown on label returning an SKLabelNode object with the correct font, color, size etc.
             let label = SKLabelNode(fontNamed : "SW Crawl Body")
-            label.fontColor = textColor
+            label.fontColor = self.textColor
             label.fontSize = 25
             label.text = text
             label.position = startingPoint
@@ -350,10 +352,17 @@ class Scene: SKScene {
     
     func finishAnimation() {
         let animationWait = SKAction.wait(forDuration: timeBeforeExplosion! + 8)
+        end = SKLabelNode(fontNamed: "SW Crawl Title")
+        end?.text = "The End"
+        end?.fontSize = 65
+        end?.fontColor = textColor
+        end?.alpha = 0 // make the text invisible so it can fade in later
+        end?.position = endScreenCameraPos
+        self.addChild(end!) // add text to the scene so it can be displayed
         let sequence = SKAction.sequence([animationWait, SKAction.run {
             self.animationFinished = true
-            }])
-        self.run(sequence)
+            }, SKAction.wait(forDuration: 5), SKAction.fadeAlpha(to: 1.0, duration: 3)])
+        end?.run(sequence)
     }
     
     // Overrided SpriteKit Functions:
@@ -364,7 +373,7 @@ class Scene: SKScene {
         setupCamera()
         aLongTimeAgo()
         makeStars()
-        playMusic()
+//        playMusic()
         showTitle()
         scrollText()
         waitBeforePan()
@@ -381,7 +390,6 @@ class Scene: SKScene {
     
     var i : Double = 0.0 // iterator variable for camera pan to Death Star and Alderaan
     var j : Double = 0.0 // iterator variable for camera pan to upwards away from Death Star / Alderaan to end screen
-    var k : Double = 0.0 // iterator variable to change opacity of SKLabelNode saying "The End"
     override func update(_ currentTime : TimeInterval) {
         if (camIsPanned == false && i < panAmount! && waitCompleted == true) {
             i += 0.03125 //0.03125
