@@ -395,10 +395,6 @@ class Scene: SKScene {
     }
     
     
-    override func didSimulatePhysics() {
-        
-    }
-    
     var i : Double = 0.0 // iterator variable for camera pan to Death Star and Alderaan
     var j : Double = 0.0 // iterator variable for camera pan to upwards away from Death Star / Alderaan to end screen
     override func update(_ currentTime : TimeInterval) {
