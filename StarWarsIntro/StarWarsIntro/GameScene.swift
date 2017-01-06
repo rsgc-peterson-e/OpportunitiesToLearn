@@ -56,6 +56,7 @@ class Scene: SKScene {
         opening[1].text = "far, far away..."
     }
     
+    
     func showTitle() {
         backgroundColor = SKColor.black
         let title = SKSpriteNode(imageNamed: "Starwars-logo.png")
@@ -66,6 +67,7 @@ class Scene: SKScene {
         title.run(titleScaleDown) // run the SKAction animation
         // wait until titleScaleDown is complete to start the scrolling text
     }
+    
     
     func makeStars() { // particle emitter taken from nyan cat playground with some modifications to the properties to better suit my project.
         let starEmitter = SKEmitterNode() // make emitter to spawn stars in the star wars animation
@@ -85,10 +87,12 @@ class Scene: SKScene {
         scene?.addChild(starEmitter) // display the particles by adding emitter object to scene
     }
     
-    func playMusic() {
+    
+    func playMusic() { // plays the star wars intro music
         let playSound = SKAction.playSoundFileNamed("intro.mp3", waitForCompletion: false) // make SKAction that plays the star wars intro music
         scene?.run(playSound) // run the SKAction playing the sound
     }
+    
     
     func scrollText() { // will recreate opening crawl of star wars a new hope
         let scrollDur : TimeInterval = 30
@@ -201,12 +205,14 @@ class Scene: SKScene {
         introWait! = introWait! + initalWait.duration + (waitForTitleScaleDown.duration / 2) - 1.5
     }
     
+    
     func showPlanet() { // will show Alderaan before being destroyed by the death star
         planet = SKSpriteNode(imageNamed : "planet.png") // initialize planet img
         planet!.setScale(1)
         planet!.position = CGPoint(x: finalCameraPos.x - frame.size.width / 6, y: finalCameraPos.y - frame.size.height / 8)
         self.addChild(planet!)
     }
+    
     
     func showDeathStar() { // will draw Death Star using SKShapeNodes and display onscreen following the camera pan
         
@@ -292,6 +298,7 @@ class Scene: SKScene {
         }
     }
     
+    
     func fireDeathStar() {
         // make sure laser shows overtop of planet image
         
@@ -321,6 +328,7 @@ class Scene: SKScene {
         self.run(fireSequence)
     }
     
+    
     func destroyPlanet() {
         let sequence = SKAction.sequence([SKAction.wait(forDuration: timeBeforeExplosion!), SKAction.run {
             let explosion = SKEmitterNode(fileNamed : "Explosion")
@@ -342,6 +350,7 @@ class Scene: SKScene {
         self.run(sequence)
     }
     
+    
     func waitBeforePan() { // functions that will use SKActions to make sure the correct time is waited before the camera pans to Alderaan and the death star
         let sequence = SKAction.sequence([SKAction.wait(forDuration: introWait!), SKAction.run {
             self.waitCompleted = true
@@ -349,6 +358,7 @@ class Scene: SKScene {
         
         self.run(sequence)
     }
+    
     
     func finishAnimation() {
         let animationWait = SKAction.wait(forDuration: timeBeforeExplosion! + 8)
@@ -373,7 +383,7 @@ class Scene: SKScene {
         setupCamera()
         aLongTimeAgo()
         makeStars()
-//        playMusic()
+        playMusic()
         showTitle()
         scrollText()
         waitBeforePan()
@@ -384,6 +394,7 @@ class Scene: SKScene {
         finishAnimation()
     }
     
+    
     override func didSimulatePhysics() {
         
     }
@@ -393,13 +404,13 @@ class Scene: SKScene {
     override func update(_ currentTime : TimeInterval) {
         if (camIsPanned == false && i < panAmount! && waitCompleted == true) {
             i += 0.03125 //0.03125
-            self.camera?.position.x = (self.camera?.position.x)! - CGFloat(i)
+            self.camera?.position.x = (self.camera?.position.x)! - CGFloat(i) // slowly change the camera's x position creating a pan
         } else if (i >= panAmount!) {
             camIsPanned = true
         }
         if (animationFinished == true && j < panAmount! && endScreenShowing == false) {
             j += 0.03125
-            self.camera?.position.y = (self.camera?.position.y)! + CGFloat(j)
+            self.camera?.position.y = (self.camera?.position.y)! + CGFloat(j) // pan camera upwards by increasing its y position
         } else if (j >= panAmount!) {
             endScreenShowing = true
         }
