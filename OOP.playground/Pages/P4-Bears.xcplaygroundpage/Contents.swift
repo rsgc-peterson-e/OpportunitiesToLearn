@@ -11,12 +11,57 @@
  */
 
 class Tiger {
-    // copy your Tiger class from the previous section!
-
+    // put your instance variables here!
+    var favoriteFood : String = "meat"
+    var name : String = ""
+    
+    
+    init(name: String) {
+        // put your initializer content here
+        self.name = name
+    }
+    
+    func sleep() {
+        // complete your sleep function here, noting the change from global to instance variables
+        print("\(name) sleeps for 8 hours")
+    }
+    
+    func eat(food: String) {
+        // complete your eat function here!
+        print("\(name) eats \(food)")
+        if (favoriteFood == food) {
+            print("YUM!!! \(name) wants more \(food)")
+        } else {
+            sleep()
+        }
+    }
 }
 
 class Bear {
     // complete the Bear class here!
+    var favoriteFood : String = "fish"
+    var name : String = ""
+    
+    
+    init(name: String) {
+        // put your initializer content here
+        self.name = name
+    }
+    
+    func sleep() {
+        // complete your sleep function here, noting the change from global to instance variables
+        print("\(name) hibernates for 4 months")
+    }
+    
+    func eat(food: String) {
+        // complete your eat function here!
+        print("\(name) eats \(food)")
+        if (favoriteFood == food) {
+            print("YUM!!! \(name) wants more \(food)")
+        } else {
+            sleep()
+        }
+    }
 
 }
 
@@ -40,12 +85,12 @@ class Bear {
 
  */
 
-//let tigger = Tiger(name: "Tigger")
-//tigger.eat(food: "meat")
-//tigger.eat(food: "kibble")
-//let pooh = Bear(name: "Pooh")
-//pooh.eat(food: "fish")
-//pooh.eat(food: "meat")
+let tigger = Tiger(name: "Tigger")
+tigger.eat(food: "meat")
+tigger.eat(food: "kibble")
+let pooh = Bear(name: "Pooh")
+pooh.eat(food: "fish")
+pooh.eat(food: "meat")
 
 
 

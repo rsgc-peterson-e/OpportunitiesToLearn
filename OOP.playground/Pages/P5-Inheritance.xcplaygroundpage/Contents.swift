@@ -7,22 +7,54 @@
  Before Zoe asks you for three new classes tomorrow, let's rewrite our code to save us some time. Create a class called `Animal`, which will act as our _superclass_ (we'll explain this in a moment). `Animal` should contain both instance variables (`name` and `favoriteFood`, in case you need a reminder). The initializer method should take two arguments that sets the value of both `name` and `favoriteFood`. Our `eat` and `sleep` methods should be exactly the same as the `Tiger` class you wrote in Problem 3.
 
  */
+//var favoriteFood : String = "meat"
+//var name : String = ""
+//
+//
+//init(name: String) {
+//    // put your initializer content here
+//    self.name = name
+//}
+//
+//func sleep() {
+//    // complete your sleep function here, noting the change from global to instance variables
+//    print("\(name) sleeps for 8 hours")
+//}
+//
+//func eat(food: String) {
+//    // complete your eat function here!
+//    print("\(name) eats \(food)")
+//    if (favoriteFood == food) {
+//        print("YUM!!! \(name) wants more \(food)")
+//    } else {
+//        sleep()
+//    }
+//}
+
+
 class Animal {
     // Put your instance variables here
-
+    var favoriteFood : String = ""
+    var name : String = ""
     init(name: String, favoriteFood: String) {
         // put your initializer content here
-
+        self.name = name
+        self.favoriteFood = favoriteFood
     }
 
     func sleep() {
         // complete your sleep function here, noting the change from global to instance variables
-
+        print("\(name) sleeps for 8 hours")
     }
 
     func eat(food: String) {
         // complete your eat function here!
-
+        print("\(name) eats \(food)")
+        if (favoriteFood == food) {
+            print("YUM!!! \(name) wants more \(food)")
+        } else {
+            sleep()
+        }
     }
 }
 /*:
@@ -79,7 +111,8 @@ let subclassInstance = ExampleSubclass(message: "Hi there Make School student. W
  - callout(Try it out!): Add calls to the `doStuff` function on both `superclassInstance` and `subclassInstance` in the space below. What do you expect them to output?
 
  */
-
+superclassInstance.doStuff()
+subclassInstance.doStuff()
 
 
 
@@ -90,7 +123,8 @@ let subclassInstance = ExampleSubclass(message: "Hi there Make School student. W
  - callout(Try it out!): Add a call to the `sayGoodbye` function on `superclassInstance`. Do you think you can call `sayGoodbye` on `subclassInstance as well? Will they output the same thing? Give it a shot below!
 
  */
-
+superclassInstance.sayGoodbye()
+subclassInstance.sayGoodbye()
 
 
 
@@ -113,9 +147,8 @@ class Tiger: Animal {
 
     init(name: String) {
         // don't forget to correct the call to the superclass initializer!
-        super.init(name: "", favoriteFood: "")
+        super.init(name: "name", favoriteFood: super.favoriteFood)
     }
-
 }
 
 class Bear: Animal {
