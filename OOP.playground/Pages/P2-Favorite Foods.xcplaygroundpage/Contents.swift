@@ -28,11 +28,16 @@
 let favoriteFood = "meat"
 
 func sleep(name: String) {
-
+    print("\(name) sleeps for 8 hours")
 }
 
 func eat(name: String, food: String) {
-
+    print("\(name) eats \(food)")
+    if (favoriteFood == food) {
+        print("YUM!!! \(name) wants more \(food)")
+    } else {
+        sleep(name: name)
+    }
 }
 
 eat(name: "Tigger", food: "meat")

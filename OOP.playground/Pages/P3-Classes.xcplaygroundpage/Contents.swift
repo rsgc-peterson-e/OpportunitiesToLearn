@@ -76,7 +76,7 @@ anotherExampleObject.myVariable
 
  */
 
-
+objectCreatedFromExample.myVariable = "changed an object variable!"
 
 
 

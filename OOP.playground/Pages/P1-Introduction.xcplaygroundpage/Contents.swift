@@ -21,7 +21,7 @@
  */
 
 func sleep(name: String) {
-    
+    print("\(name) sleeps for 8 hours")
 }
 
 sleep(name: "Tigger")
