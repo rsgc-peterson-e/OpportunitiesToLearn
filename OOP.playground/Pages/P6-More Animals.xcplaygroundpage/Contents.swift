@@ -8,31 +8,53 @@
 
  */
 
-// Copy your Animal class here
 class Animal {
-
+    // Put your instance variables here
+    var favoriteFood : String = ""
+    var name : String = ""
     init(name: String, favoriteFood: String) {
         // put your initializer content here
-
+        self.name = name
+        self.favoriteFood = favoriteFood
     }
-
-    func eat(food: String) {
-
-    }
-
+    
     func sleep() {
-
+        // complete your sleep function here, noting the change from global to instance variables
+        print("\(name) sleeps for 8 hours")
+    }
+    
+    func eat(food: String) {
+        // complete your eat function here!
+        print("\(name) eats \(food)")
+        if (favoriteFood == food) {
+            print("YUM!!! \(name) wants more \(food)")
+        } else {
+            sleep()
+        }
     }
 }
 
-// Copy your Tiger class here
-class Tiger: Animal {
-
+class Tiger : Animal {
+    // put your instance variables here!
+    
+    
+    init(name: String) {
+        super.init(name: name, favoriteFood: "meat")
+    }
+    
 }
 
-// Copy your Bear class here
-class Bear: Animal {
-
+class Bear : Animal {
+    // complete the Bear class here!
+    
+    init(name: String) {
+        // put your initializer content here
+        super.init(name: name, favoriteFood: "fish")
+    }
+    
+    override func sleep() {
+        print("\(super.name) hibernates for 4 months")
+    }
 }
 
 /*:
@@ -47,15 +69,15 @@ class Bear: Animal {
 // Implement the Unicorn class here as a subclass of Animal
 // Hint: Implement the initializer method and override the sleep method
 class Unicorn: Animal {
-
+    
     init(name: String) {
         // don't forget to correct the call to the superclass initializer!
-        super.init(name: "", favoriteFood: "")
+        super.init(name: name, favoriteFood: "marshmallows")
     }
 
     override func sleep() {
         // your overridden sleep code...
-
+        print("\(super.name) sleeps in a cloud")
     }
 }
 
@@ -73,12 +95,19 @@ class Giraffe: Animal {
 
     init(name: String) {
         // don't forget to correct the call to the superclass initializer!
-        super.init(name: "", favoriteFood: "")
+        super.init(name: name, favoriteFood: "leaves")
     }
 
     override func eat(food: String) {
         // check here if you don't like the food you were given...
         // don't forget a call to the superclass eat function!
+        //print("\(super.name) eats \(food)")
+        if (food == super.favoriteFood) {
+            print("YUM!!! \(super.name) wants more leaves")
+            super.sleep()
+        } else {
+            print("YUCK!!! \(super.name) will not eat \(food)")
+        }
     }
 }
 
@@ -93,7 +122,21 @@ class Giraffe: Animal {
 // Implement the Bee class here as a subclass of Animal
 // Hint: Implement the initializer method and override the sleep and eat methods
 class Bee: Animal {
-
+    init(name : String) {
+        super.init(name: name, favoriteFood: "pollen")
+    }
+    
+    override func sleep() {
+        print("\(super.name) never sleeps")
+    }
+    
+    override func eat(food: String) {
+        if (food == super.favoriteFood) {
+            print("YUM!!! \(super.name) wants more \(super.favoriteFood)")
+        } else {
+           print("YUCK!!! \(super.name) will not eat \(food)")
+        }
+    }
 }
 
 
@@ -128,7 +171,25 @@ class Bee: Animal {
     - A `Bee` named Stinger
 
  */
+var tiger = Tiger(name: "Tigger")
+tiger.eat(food: "meat")
 
+var bear = Bear(name: "Pooh")
+bear.eat(food: "fish")
+bear.eat(food: "meat")
+
+var unicorn = Unicorn(name: "Rarity")
+unicorn.eat(food: "marshmallows")
+unicorn.sleep()
+
+var giraffe = Giraffe(name: "Gemma")
+giraffe.eat(food: "meat")
+giraffe.eat(food: "leaves")
+
+var bee = Bee(name: "Stinger")
+bee.eat(food: "ice cream")
+bee.eat(food: "pollen")
+bee.sleep()
 
 
 
