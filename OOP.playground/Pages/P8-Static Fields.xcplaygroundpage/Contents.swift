@@ -22,6 +22,7 @@ class AnotherExampleClass {
         print("\(self.message) \(AnotherExampleClass.counter)!")
     }
 }
+//AnotherExampleClass.counter
 /*:
  
  In this example, we have an instance variable `message`, and a _static_ property `counter`, initialized to `8999`. After each call of `increaseAndCheckTheCounter()`, the type variable is incremented, and is printed, along with the `message` instance variable. Note that difference in the syntax as well: `message` is accessed from within the class as `self.message`, while `counter` is accessed as `AnotherExampleClass.counter`, signifying that the variable `counter` is _shared_ across the entire type `AnotherExampleClass`.

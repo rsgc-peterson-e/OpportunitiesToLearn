@@ -7,31 +7,6 @@
  Before Zoe asks you for three new classes tomorrow, let's rewrite our code to save us some time. Create a class called `Animal`, which will act as our _superclass_ (we'll explain this in a moment). `Animal` should contain both instance variables (`name` and `favoriteFood`, in case you need a reminder). The initializer method should take two arguments that sets the value of both `name` and `favoriteFood`. Our `eat` and `sleep` methods should be exactly the same as the `Tiger` class you wrote in Problem 3.
 
  */
-//var favoriteFood : String = "meat"
-//var name : String = ""
-//
-//
-//init(name: String) {
-//    // put your initializer content here
-//    self.name = name
-//}
-//
-//func sleep() {
-//    // complete your sleep function here, noting the change from global to instance variables
-//    print("\(name) sleeps for 8 hours")
-//}
-//
-//func eat(food: String) {
-//    // complete your eat function here!
-//    print("\(name) eats \(food)")
-//    if (favoriteFood == food) {
-//        print("YUM!!! \(name) wants more \(food)")
-//    } else {
-//        sleep()
-//    }
-//}
-
-
 class Animal {
     // Put your instance variables here
     var favoriteFood : String = ""
@@ -143,23 +118,59 @@ subclassInstance.sayGoodbye()
  */
 
 // Complete the Tiger and Bear subclasses below
-class Tiger: Animal {
-
+class Tiger : Animal {
+    // put your instance variables here!
+    var favoriteFood : String = "meat"
+    var name : String = ""
+    
+    
     init(name: String) {
-        // don't forget to correct the call to the superclass initializer!
-        super.init(name: "name", favoriteFood: super.favoriteFood)
+        // put your initializer content here
+        self.name = name
+    }
+    
+    func sleep() {
+        // complete your sleep function here, noting the change from global to instance variables
+        print("\(name) sleeps for 8 hours")
+    }
+    
+    func eat(food: String) {
+        // complete your eat function here!
+        print("\(name) eats \(food)")
+        if (favoriteFood == food) {
+            print("YUM!!! \(name) wants more \(food)")
+        } else {
+            sleep()
+        }
     }
 }
 
-class Bear: Animal {
-    // complete the Bear class here, using the completed Tiger class as an example
-
-
-    // here, we override the sleep function
-    override func sleep() {
-        // add in your Bear-specific sleep code here
-
+class Bear : Animal {
+    // complete the Bear class here!
+    var favoriteFood : String = "fish"
+    var name : String = ""
+    
+    
+    init(name: String) {
+        // put your initializer content here
+        self.name = name
     }
+    
+    func sleep() {
+        // complete your sleep function here, noting the change from global to instance variables
+        print("\(name) hibernates for 4 months")
+    }
+    
+    func eat(food: String) {
+        // complete your eat function here!
+        print("\(name) eats \(food)")
+        if (favoriteFood == food) {
+            print("YUM!!! \(name) wants more \(food)")
+        } else {
+            sleep()
+        }
+    }
+    
 }
 
 /*:
