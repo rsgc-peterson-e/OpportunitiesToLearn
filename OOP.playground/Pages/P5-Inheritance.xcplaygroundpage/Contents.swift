@@ -120,57 +120,21 @@ subclassInstance.sayGoodbye()
 // Complete the Tiger and Bear subclasses below
 class Tiger : Animal {
     // put your instance variables here!
-    var favoriteFood : String = "meat"
-    var name : String = ""
     
     
     init(name: String) {
-        // put your initializer content here
-        self.name = name
+        super.init(name: name, favoriteFood: "meat")
     }
     
-    func sleep() {
-        // complete your sleep function here, noting the change from global to instance variables
-        print("\(name) sleeps for 8 hours")
-    }
-    
-    func eat(food: String) {
-        // complete your eat function here!
-        print("\(name) eats \(food)")
-        if (favoriteFood == food) {
-            print("YUM!!! \(name) wants more \(food)")
-        } else {
-            sleep()
-        }
-    }
 }
 
 class Bear : Animal {
     // complete the Bear class here!
-    var favoriteFood : String = "fish"
-    var name : String = ""
-    
     
     init(name: String) {
         // put your initializer content here
-        self.name = name
+        super.init(name: name, favoriteFood: "fish")
     }
-    
-    func sleep() {
-        // complete your sleep function here, noting the change from global to instance variables
-        print("\(name) hibernates for 4 months")
-    }
-    
-    func eat(food: String) {
-        // complete your eat function here!
-        print("\(name) eats \(food)")
-        if (favoriteFood == food) {
-            print("YUM!!! \(name) wants more \(food)")
-        } else {
-            sleep()
-        }
-    }
-    
 }
 
 /*:
@@ -192,10 +156,10 @@ class Bear : Animal {
 
  */
 
-//let tigger = Tiger(name: "Tigger")
-//tigger.eat(food: "meat")
-//let pooh = Bear(name: "Pooh")
-//pooh.eat(food: "fish")
-//pooh.eat(food: "meat")
+let tigger = Tiger(name: "Tigger")
+tigger.eat(food: "meat")
+let pooh = Bear(name: "Pooh")
+pooh.eat(food: "fish")
+pooh.eat(food: "meat")
 
 //: [Previous](@previous) | [Next](@next)
