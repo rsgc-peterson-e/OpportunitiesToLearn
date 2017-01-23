@@ -21,9 +21,8 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="22i-en-w2K" userLabel="BottomContainer">
+                            <view contentMode="scaleToFill" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="22i-en-w2K" userLabel="BottomContainer">
                                 <rect key="frame" x="0.0" y="540" width="600" height="60"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Auto Layout 101 - We ❤ Swift" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Dg1-Ba-753" userLabel="TitleLabel">
                                         <rect key="frame" x="14" y="14" width="369.5" height="33.5"/>
@@ -34,6 +33,9 @@
                                     </label>
                                 </subviews>
                                 <color key="backgroundColor" red="0.88321474357295704" green="0.8866600537799163" blue="0.91372549020000005" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="60" id="b0j-R6-ruC"/>
+                                </constraints>
                             </view>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="We" textAlignment="right" lineBreakMode="tailTruncation" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="P2F-mh-jwf">
                                 <rect key="frame" x="191" y="270" width="71" height="60"/>
@@ -55,6 +57,11 @@
                             </label>
                         </subviews>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <constraints>
+                            <constraint firstAttribute="trailingMargin" secondItem="22i-en-w2K" secondAttribute="trailing" constant="-245" id="0QE-FU-3nH"/>
+                            <constraint firstItem="22i-en-w2K" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leadingMargin" constant="-20" id="P8P-7g-dVn"/>
+                            <constraint firstItem="wfy-db-euE" firstAttribute="top" secondItem="22i-en-w2K" secondAttribute="bottom" constant="67" id="VYh-fl-Ejb"/>
+                        </constraints>
                     </view>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
@@ -82,7 +89,7 @@
                         <constraints>
                             <constraint firstItem="WGH-8z-A19" firstAttribute="top" secondItem="a01-5g-TtZ" secondAttribute="bottom" id="W2J-Bv-Zmo"/>
                             <constraint firstAttribute="trailingMargin" secondItem="a01-5g-TtZ" secondAttribute="trailing" constant="-20" id="crh-48-pPC"/>
-                            <constraint firstItem="a01-5g-TtZ" firstAttribute="leading" secondItem="Aur-aK-0wt" secondAttribute="leadingMargin" constant="-20" id="eDL-Wd-93i"/>
+                            <constraint firstItem="a01-5g-TtZ" firstAttribute="leading" secondItem="Aur-aK-0wt" secondAttribute="leadingMargin" constant="40" id="eDL-Wd-93i"/>
                             <constraint firstItem="a01-5g-TtZ" firstAttribute="top" secondItem="Tx2-hL-t52" secondAttribute="bottom" constant="-20" id="vew-fB-yMm"/>
                         </constraints>
                     </view>
