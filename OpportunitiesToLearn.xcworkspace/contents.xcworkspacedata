@@ -2,7 +2,7 @@
 <Workspace
    version = "1.0">
    <FileRef
-      location = "group:starter-revised/Auto Layout 101.xcodeproj">
+      location = "group:../../starter-revised/Auto Layout 101.xcodeproj">
    </FileRef>
    <FileRef
       location = "group:OOP.playground">
